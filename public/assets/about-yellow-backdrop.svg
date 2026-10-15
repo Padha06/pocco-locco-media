@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 500" fill="none">
+  <defs>
+    <!-- Radiant golden-yellow gradient matching client design -->
+    <radialGradient id="sunYellowGrad" cx="44%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#FFDD55" />
+      <stop offset="45%" stop-color="#FFC000" />
+      <stop offset="85%" stop-color="#FF9E00" />
+      <stop offset="100%" stop-color="#F58E00" />
+    </radialGradient>
+    <filter id="softGlow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#FFA000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Main Sun Yellow Circular Blob -->
+  <circle cx="270" cy="240" r="195" fill="url(#sunYellowGrad)" filter="url(#softGlow)" />
+
+  <!-- Authentic Left-side Paint Splatters & Droplets -->
+  <path d="M78 305 C54 322, 38 344, 48 362 C62 376, 88 360, 98 338 Z" fill="#FFB703" />
+  <circle cx="42" cy="378" r="13" fill="#FFB703" />
+  <circle cx="24" cy="338" r="7" fill="#FFC000" />
+  <circle cx="68" cy="408" r="8" fill="#FF9E00" />
+  <circle cx="96" cy="422" r="5" fill="#FFB703" />
+  <circle cx="30" cy="285" r="5" fill="#FFDD55" />
+  <path d="M102 360 Q72 405, 112 396 T142 366 Z" fill="#FFA000" />
+
+  <!-- Authentic Right-side Paint Splatters & Droplets behind Soot Monster -->
+  <path d="M438 305 C468 322, 486 345, 474 362 C460 376, 436 366, 420 342 Z" fill="#FFB703" />
+  <circle cx="492" cy="372" r="14" fill="#FFB703" />
+  <circle cx="510" cy="336" r="6" fill="#FFC000" />
+  <circle cx="468" cy="408" r="9" fill="#FF9E00" />
+  <circle cx="442" cy="424" r="6" fill="#FFB703" />
+  <circle cx="504" cy="285" r="5" fill="#FFDD55" />
+  <path d="M414 362 Q450 404, 408 400 T382 368 Z" fill="#FFA000" />
+
+  <!-- Organic Splash Dabs along outer rim -->
+  <ellipse cx="250" cy="98" rx="85" ry="18" fill="#FFFFFF" opacity="0.22" transform="rotate(-12 250 98)" />
+</svg>
