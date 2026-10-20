@@ -37,22 +37,22 @@ export default function GlobalMetrics() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
         {/* Top Header Row with Rotating Globe Video & Global Opportunities Tag */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-2">
+        <div className="grid grid-cols-12 gap-2 lg:gap-8 items-center mb-2">
           
           {/* Left: Heading & Description */}
-          <div className="lg:col-span-6">
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-[64px] text-black uppercase leading-[1.05] mb-4">
+          <div className="col-span-7 lg:col-span-6">
+            <h2 className="font-display text-[26px] sm:text-5xl lg:text-[64px] text-black uppercase leading-[1.05] mb-2 sm:mb-4">
               TRUSTED TO <br />
               PERFORM <span className="text-[#FF1493]">GLOBALLY</span>
             </h2>
-            <p className="text-gray-700 text-sm sm:text-base font-semibold max-w-lg leading-relaxed">
+            <p className="text-gray-700 text-[10px] sm:text-base font-semibold max-w-lg leading-snug sm:leading-relaxed">
               We work with leading brands across multiple industries and geographies,
               delivering measurable results through innovative performance solutions.
             </p>
           </div>
 
           {/* Right: Rotating Globe Video + Exact Positioned Global Opportunities Tag */}
-          <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-end">
+          <div className="col-span-5 lg:col-span-6 relative flex items-center justify-end">
             
             <motion.div
               style={{ scale: globeScale }}
@@ -61,7 +61,7 @@ export default function GlobalMetrics() {
               className="relative flex items-center mix-blend-multiply"
             >
               {/* Rotating Globe Video (Seamless Pure White Blend with NO gray box) */}
-              <div className="relative w-[220px] sm:w-[260px] lg:w-[290px] aspect-square shrink-0 flex items-center justify-center">
+              <div className="relative w-[96px] sm:w-[260px] lg:w-[290px] aspect-square shrink-0 flex items-center justify-center">
                 <video
                   src="/assets/rotating-globe.mp4"
                   poster="/assets/globe-poster.webp"
@@ -90,7 +90,7 @@ export default function GlobalMetrics() {
                   y: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
                   rotate: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
                 }}
-                className="relative -ml-12 sm:-ml-16 lg:-ml-20 w-[160px] sm:w-[200px] lg:w-[230px] shrink-0 pointer-events-none select-none z-10"
+                className="relative -ml-6 sm:-ml-16 lg:-ml-20 w-[70px] sm:w-[200px] lg:w-[230px] shrink-0 pointer-events-none select-none z-10"
               >
                 <img
                   src="/assets/global-opportunities-tag.webp"
@@ -105,7 +105,7 @@ export default function GlobalMetrics() {
         </div>
 
         {/* 5 Big Metrics Counter Bar (No divider line, tight spacing matching client design) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+        <div className="grid grid-cols-5 gap-1 sm:gap-6">
           {metrics.map((m, idx) => (
             <motion.div
               key={m.label}
@@ -114,12 +114,12 @@ export default function GlobalMetrics() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
               whileHover={{ scale: 1.05, y: -3 }}
-              className="flex flex-col items-center sm:items-start text-center sm:text-left p-2.5 rounded-2xl hover:bg-gray-50/80 transition-all cursor-default"
+              className="flex flex-col items-start text-left p-0.5 sm:p-2.5 rounded-2xl hover:bg-gray-50/80 transition-all cursor-default"
             >
-              <span className={`text-3xl sm:text-4xl lg:text-5xl font-black ${m.color} tracking-tight drop-shadow-sm`}>
+              <span className={`text-[15px] sm:text-4xl lg:text-5xl font-black ${m.color} tracking-tight drop-shadow-sm`}>
                 {m.value}
               </span>
-              <span className="text-xs sm:text-sm font-black text-gray-800 tracking-wider uppercase mt-1.5">
+              <span className="text-[7px] sm:text-sm font-black text-gray-800 tracking-normal sm:tracking-wider uppercase mt-0.5 sm:mt-1.5">
                 {m.label}
               </span>
             </motion.div>

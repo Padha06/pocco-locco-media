@@ -120,7 +120,7 @@ const SHAPES = { Splat, Squiggle, Spiral, Zigzag, Dots, Sparkle, Star, Crown, Sw
 
 // Scatter of absolutely-positioned doodles; each item gently bobs so the page feels alive.
 // items: [{ shape: 'Splat', className: 'top-4 left-2 w-16', props: { color } , spin }]
-export function CraftScatter({ items, className = 'hidden md:block' }) {
+export function CraftScatter({ items, className = '' }) {
   return (
     <div className={`absolute inset-0 pointer-events-none select-none z-0 ${className}`} aria-hidden="true">
       {items.map((it, i) => {
@@ -128,7 +128,7 @@ export function CraftScatter({ items, className = 'hidden md:block' }) {
         return (
           <motion.div
             key={i}
-            className={`absolute ${it.className}`}
+            className={`absolute max-md:scale-50 max-md:opacity-70 ${it.className}`}
             animate={it.still ? undefined : { y: [0, i % 2 ? -5 : 5, 0], rotate: [0, it.spin ?? (i % 2 ? 6 : -6), 0] }}
             transition={{ repeat: Infinity, duration: 4 + (i % 4), ease: 'easeInOut' }}
           >

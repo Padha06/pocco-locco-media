@@ -60,13 +60,13 @@ export default function AboutSection() {
         {/* =========================================================================
             TOP BLOCK: Character with Yellow Backdrop + Copy + "MORE THAN MARKETING"
            ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-8 sm:mb-10">
+        <div className="grid grid-cols-12 gap-3 lg:gap-12 items-center mb-5 sm:mb-10">
           
           {/* Left Column: 3D Guy with Laptop + Yellow Paint Splatter Backdrop + Doodles */}
-          <div className="lg:col-span-6 relative flex justify-center items-center">
+          <div className="col-span-5 lg:col-span-6 relative flex justify-center items-center">
             
             {/* Custom Golden-Yellow Paint Circle Backdrop with Splatters */}
-            <div className="absolute w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] lg:w-[410px] lg:h-[410px] top-1/2 left-1/2 -translate-x-[52%] -translate-y-[52%] z-0 pointer-events-none select-none">
+            <div className="absolute w-[140px] h-[140px] sm:w-[360px] sm:h-[360px] lg:w-[410px] lg:h-[410px] top-1/2 left-1/2 -translate-x-[52%] -translate-y-[52%] z-0 pointer-events-none select-none">
               <img
                 src="/assets/about-yellow-backdrop.svg"
                 alt="Yellow Splatter Backdrop"
@@ -115,7 +115,7 @@ export default function AboutSection() {
             <motion.div
               style={{ y: laptopGuyY }}
               whileHover={{ scale: 1.02 }}
-              className="relative z-10 max-w-[320px] sm:max-w-[380px] lg:max-w-[420px] w-full cursor-pointer"
+              className="relative z-10 max-w-[150px] sm:max-w-[380px] lg:max-w-[420px] w-full cursor-pointer"
             >
               <img
                 src="/assets/about-man-laptop.webp"
@@ -127,13 +127,13 @@ export default function AboutSection() {
           </div>
 
           {/* Right Column: Copy, CTA & Tilted "MORE THAN MARKETING" */}
-          <div className="lg:col-span-6 relative">
+          <div className="col-span-7 lg:col-span-6 relative">
             
             {/* Tilted "MORE THAN MARKETING" Doodle Graphic from user asset */}
             <motion.div
               animate={{ y: [-3, 3, -3], rotate: [-1, 2, -1] }}
               transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
-              className="absolute top-0 lg:top-6 right-0 lg:-right-4 w-24 sm:w-32 lg:w-36 pointer-events-none select-none z-20"
+              className="absolute -top-2 lg:top-6 right-0 lg:-right-4 w-12 sm:w-32 lg:w-36 pointer-events-none select-none z-20"
             >
               <img
                 src="/assets/more-than-marketing.webp"
@@ -148,15 +148,15 @@ export default function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="pt-4 lg:pt-0 pr-24 sm:pr-32 lg:pr-28"
+              className="pt-0 pr-10 sm:pr-32 lg:pr-28"
             >
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-[54px] text-black uppercase leading-[1.05] mb-4 whitespace-nowrap">
+              <h2 className="font-display text-2xl sm:text-5xl lg:text-[54px] text-black uppercase leading-[1.05] mb-2 sm:mb-4 lg:whitespace-nowrap">
                 ABOUT <br />
                 POCCO LOCCO <span className="text-[#FF1493]">MEDIA</span>
               </h2>
 
               {/* Paragraph with matched generous gap below as per client mockup */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-gray-700 font-medium leading-relaxed mb-6 max-w-xl">
+              <p className="text-[10px] sm:text-base lg:text-[17px] text-gray-700 font-medium leading-snug sm:leading-relaxed mb-3 sm:mb-6 max-w-xl">
                 Pocco Locco Media is a global performance marketing network. We
                 connect advertisers with high-quality publishers to drive real
                 business growth through data-driven strategies, innovative
@@ -179,11 +179,11 @@ export default function AboutSection() {
                 }}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="group inline-flex items-center justify-between bg-black text-white text-xs sm:text-sm font-black tracking-wider uppercase pl-6 pr-2.5 py-3 rounded-full hover:bg-neutral-900 transition-all shadow-xl w-fit cursor-pointer"
+                className="group inline-flex items-center justify-between bg-black text-white text-[9px] sm:text-sm font-black tracking-wide sm:tracking-wider uppercase pl-3 sm:pl-6 pr-1.5 sm:pr-2.5 py-1.5 sm:py-3 rounded-full hover:bg-neutral-900 transition-all shadow-xl w-fit cursor-pointer"
               >
                 <span>OUR STORY</span>
-                <span className="w-7 h-7 rounded-full bg-[#FF1493] flex items-center justify-center text-white ml-4 transition-transform group-hover:translate-x-1 shadow-sm">
-                  <ArrowRight className="w-4 h-4" />
+                <span className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#FF1493] flex items-center justify-center text-white ml-2 sm:ml-4 transition-transform group-hover:translate-x-1 shadow-sm">
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                 </span>
               </motion.button>
             </motion.div>
@@ -205,9 +205,9 @@ export default function AboutSection() {
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="hidden md:block absolute left-4 lg:left-20 top-1/2 -translate-y-1/2 pointer-events-none select-none"
+              className="absolute -left-2 sm:left-4 lg:left-20 w-10 sm:w-auto top-1/2 -translate-y-1/2 pointer-events-none select-none"
             >
-              <svg width="120" height="50" viewBox="0 0 120 50" fill="none" className="text-black">
+              <svg viewBox="0 0 120 50" fill="none" className="text-black w-10 sm:w-[120px] h-auto">
                 <path
                   d="M8 42 C 32 10, 80 10, 112 36"
                   stroke="#111111"
@@ -225,7 +225,7 @@ export default function AboutSection() {
             </motion.div>
 
             {/* Centered Heading */}
-            <h2 className="font-display text-3xl sm:text-5xl text-black uppercase text-center">
+            <h2 className="font-display text-xl sm:text-5xl text-black uppercase text-center">
               WHY WORK WITH <span className="text-[#FF1493]">POCCO LOCCO?</span>
             </h2>
 
@@ -238,14 +238,14 @@ export default function AboutSection() {
               <img
                 src="/assets/crown-white.svg"
                 alt="White Crown Doodle"
-                className="w-11 h-11 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain drop-shadow-sm"
+                className="w-7 h-7 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-contain drop-shadow-sm"
               />
             </motion.div>
 
           </div>
 
           {/* 4 Feature Value Pillars (Direct Minimalist Layout matching client design without boxed cards) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          <div className="grid grid-cols-4 gap-2 lg:gap-6">
             {features.map((item, idx) => (
               <motion.div
                 key={item.title}
@@ -257,21 +257,21 @@ export default function AboutSection() {
                 className="flex flex-col items-center text-center cursor-pointer group"
               >
                 {/* User Extracted Icon */}
-                <div className="h-16 sm:h-20 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                <div className="h-9 sm:h-20 flex items-center justify-center mb-1.5 sm:mb-4 transition-transform duration-300 group-hover:scale-110">
                   <img
                     src={item.img}
                     alt={item.title}
-                    className="max-h-full max-w-[85px] sm:max-w-[95px] object-contain drop-shadow-sm"
+                    className="max-h-full max-w-[40px] sm:max-w-[95px] object-contain drop-shadow-sm"
                   />
                 </div>
 
                 {/* Title with exact alternating color (#0099FF / #FF1493) */}
-                <h3 className={`text-sm sm:text-base font-black tracking-wider uppercase mb-2 ${item.titleColor}`}>
+                <h3 className={`text-[8px] sm:text-base font-black tracking-normal sm:tracking-wider uppercase mb-0.5 sm:mb-2 ${item.titleColor}`}>
                   {item.title}
                 </h3>
 
                 {/* Description Text */}
-                <p className="text-xs sm:text-sm text-gray-700 font-medium leading-relaxed max-w-[210px]">
+                <p className="text-[8px] sm:text-sm text-gray-700 font-medium leading-tight sm:leading-relaxed max-w-[210px]">
                   {item.desc}
                 </p>
               </motion.div>

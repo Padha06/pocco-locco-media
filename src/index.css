@@ -113,6 +113,14 @@
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
+/* Horizontal swipe rows without a visible scrollbar */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Marquee animation */
 @keyframes marquee {
   0% { transform: translateX(0%); }

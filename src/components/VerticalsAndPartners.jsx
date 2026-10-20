@@ -55,7 +55,7 @@ function PartnerLogo({ name }) {
         </span>
       );
     case 'cocacola':
-      return <span className="font-['Lobster',cursive] text-[30px] leading-none text-[#E4002B] -rotate-3 inline-block">Coca-Cola</span>;
+      return <span className="font-['Lobster',cursive] text-[30px] leading-none text-[#E4002B] -rotate-3 inline-block whitespace-nowrap">Coca-Cola</span>;
     default:
       return null;
   }
@@ -145,26 +145,26 @@ export default function VerticalsAndPartners() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Verticals Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-5 gap-3">
+        <div className="flex flex-row items-end justify-between mb-4 sm:mb-5 gap-3">
           <div>
-            <h2 className="font-display text-4xl sm:text-5xl text-black uppercase leading-none">
+            <h2 className="font-display text-2xl sm:text-5xl text-black uppercase leading-none">
               VERTICALS <span className="text-[#FF1493]">CAMPAIGNS</span>
             </h2>
-            <p className="text-sm sm:text-base text-gray-800 font-semibold mt-2">
+            <p className="text-[10px] sm:text-base text-gray-800 font-semibold mt-1 sm:mt-2">
               A selection of successful campaigns across various verticals.
             </p>
           </div>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-1.5 text-sm font-black text-black hover:text-[#FF1493] uppercase tracking-wide transition-colors"
+            className="group inline-flex items-center gap-1 sm:gap-1.5 text-[9px] sm:text-sm font-black text-black hover:text-[#FF1493] uppercase tracking-wide transition-colors whitespace-nowrap shrink-0"
           >
             <span>VIEW ALL CASE STUDIES</span>
-            <ArrowRight className="w-4 h-4 stroke-[2.5] transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 stroke-[2.5] transition-transform group-hover:translate-x-1" />
           </a>
         </div>
 
         {/* 4 Verticals Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-10 sm:mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-5 sm:gap-5 mb-8 sm:mb-12">
           {verticals.map((v, idx) => (
             <motion.div
               key={v.category}
@@ -177,7 +177,7 @@ export default function VerticalsAndPartners() {
             >
               <Tape
                 color={TAPE_COLORS[idx]}
-                className={`absolute -top-3 left-1/2 -translate-x-1/2 w-16 z-10 ${idx % 2 ? 'rotate-3' : '-rotate-3'}`}
+                className={`absolute -top-3 left-1/2 -translate-x-1/2 w-12 sm:w-16 z-10 ${idx % 2 ? 'rotate-3' : '-rotate-3'}`}
               />
               {/* Thumbnail with category pill straddling the bottom edge */}
               <div className="relative">
@@ -189,30 +189,30 @@ export default function VerticalsAndPartners() {
                   />
                 </div>
                 <span
-                  className={`absolute -bottom-3.5 left-4 min-w-[104px] text-center text-xs font-black uppercase tracking-wide px-4 py-1.5 rounded-md shadow-md ${v.categoryColor}`}
+                  className={`absolute -bottom-2.5 sm:-bottom-3.5 left-2 sm:left-4 min-w-[64px] sm:min-w-[104px] text-center text-[8px] sm:text-xs font-black uppercase tracking-wide px-2 sm:px-4 py-1 sm:py-1.5 rounded-md shadow-md ${v.categoryColor}`}
                 >
                   {v.category}
                 </span>
               </div>
 
               {/* Card Body */}
-              <div className="px-4 sm:px-5 pt-7 pb-4 flex-1 flex flex-col">
-                <h3 className="text-[15px] font-extrabold text-gray-900 leading-snug mb-2 group-hover:text-[#FF1493] transition-colors">
+              <div className="px-2.5 sm:px-5 pt-5 sm:pt-7 pb-3 sm:pb-4 flex-1 flex flex-col">
+                <h3 className="text-[11px] sm:text-[15px] font-extrabold text-gray-900 leading-snug mb-1 sm:mb-2 group-hover:text-[#FF1493] transition-colors">
                   {v.title}
                 </h3>
-                <span className={`text-[34px] font-black leading-none tracking-tight ${v.statColor}`}>
+                <span className={`text-2xl sm:text-[34px] font-black leading-none tracking-tight ${v.statColor}`}>
                   {v.stat}
                 </span>
-                <span className="text-sm font-semibold text-gray-800 mt-1">
+                <span className="text-[10px] sm:text-sm font-semibold text-gray-800 mt-1">
                   {v.statLabel}
                 </span>
 
                 <a
                   href="#contact"
-                  className="mt-4 self-center inline-flex items-center gap-1.5 text-sm font-black text-gray-900 uppercase group-hover:text-[#FF1493] transition-colors"
+                  className="mt-2 sm:mt-4 self-center inline-flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-sm font-black text-gray-900 uppercase group-hover:text-[#FF1493] transition-colors"
                 >
                   <span>VIEW CASE</span>
-                  <ArrowRight className="w-4 h-4 stroke-[2.5] transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 stroke-[2.5] transition-transform group-hover:translate-x-1" />
                 </a>
               </div>
             </motion.div>
@@ -221,11 +221,11 @@ export default function VerticalsAndPartners() {
 
         {/* WHAT OUR PARTNERS SAY */}
         <div id="testimonials" className="relative mb-8 sm:mb-10">
-          <h2 className="font-display text-4xl sm:text-5xl text-black uppercase leading-none mb-5">
+          <h2 className="font-display text-2xl sm:text-5xl text-black uppercase leading-none mb-2 sm:mb-5">
             WHAT OUR PARTNERS <span className="text-[#FF1493]">SAY</span>
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_1fr_150px] gap-4 sm:gap-5 items-stretch">
+          <div className="flex lg:grid lg:grid-cols-[1fr_1fr_1fr_150px] gap-3 sm:gap-5 items-stretch overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 pt-3 pb-2 lg:mx-0 lg:px-0 lg:pt-0 lg:pb-0">
             {testimonials.map((t, idx) => (
               <motion.div
                 key={t.name}
@@ -234,7 +234,7 @@ export default function VerticalsAndPartners() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="relative bg-white px-5 pt-4 pb-5 rounded-xl border border-gray-200 shadow-[0_4px_18px_rgba(0,0,0,0.05)] hover:shadow-lg transition-shadow flex flex-col justify-between"
+                className="relative shrink-0 w-[78%] sm:w-[45%] lg:w-auto snap-start bg-white px-4 sm:px-5 pt-4 pb-4 sm:pb-5 rounded-xl border border-gray-200 shadow-[0_4px_18px_rgba(0,0,0,0.05)] hover:shadow-lg transition-shadow flex flex-col justify-between"
               >
                 <Tape
                   color={TAPE_COLORS[(idx + 1) % 4]}
@@ -242,7 +242,7 @@ export default function VerticalsAndPartners() {
                 />
                 <div className="flex gap-2.5">
                   <span className="font-display text-4xl leading-none text-[#FF1493] -mt-0.5">“</span>
-                  <p className="text-sm text-gray-800 font-medium leading-relaxed pt-1.5">
+                  <p className="text-xs sm:text-sm text-gray-800 font-medium leading-relaxed pt-1.5">
                     {t.quote}
                   </p>
                 </div>
@@ -269,14 +269,14 @@ export default function VerticalsAndPartners() {
             ))}
 
             {/* Hand-drawn "REAL PEOPLE. REAL RESULTS." callout */}
-            <div className="hidden lg:flex relative items-center justify-center pointer-events-none select-none">
-              <svg viewBox="0 0 120 60" fill="none" className="absolute -top-14 -left-6 w-32 h-16 text-black">
+            <div className="flex shrink-0 w-[32%] lg:w-auto snap-start relative items-center justify-center pointer-events-none select-none">
+              <svg viewBox="0 0 120 60" fill="none" className="hidden lg:block absolute -top-14 -left-6 w-32 h-16 text-black">
                 <path d="M112 30 C 100 4, 70 0, 62 18 C 56 32, 74 34, 72 20 C 70 8, 40 6, 12 40" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
                 <path d="M8 28 L11 42 L24 38" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <div className="font-marker text-[26px] leading-[1.05] text-black -rotate-12 text-center">
+              <div className="font-marker text-lg sm:text-[26px] leading-[1.05] text-black -rotate-12 text-center">
                 REAL<br />PEOPLE.<br />REAL<br />RESULTS.
-                <svg viewBox="0 0 120 14" className="w-28 h-3.5 mx-auto -mt-0.5" fill="none">
+                <svg viewBox="0 0 120 14" className="w-20 sm:w-28 h-3.5 mx-auto -mt-0.5" fill="none">
                   <path d="M4 10 Q 60 2, 116 6" stroke="#FF1493" strokeWidth="4" strokeLinecap="round" />
                 </svg>
               </div>
@@ -286,9 +286,9 @@ export default function VerticalsAndPartners() {
 
         {/* OUR PARTNERS logo row */}
         <div id="partners">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-3 sm:mb-4">
             <div className="flex items-center gap-3">
-              <h2 className="font-display text-4xl sm:text-5xl text-black uppercase leading-none">
+              <h2 className="font-display text-2xl sm:text-5xl text-black uppercase leading-none">
                 OUR PARTNERS
               </h2>
               <svg viewBox="0 0 90 40" fill="none" className="hidden sm:block w-20 h-9 mt-3 text-black">
@@ -296,15 +296,15 @@ export default function VerticalsAndPartners() {
                 <path d="M68 26 L82 28 L80 14" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <img src="/assets/crown-white.svg" alt="" className="w-11 h-11 sm:w-12 sm:h-12 object-contain rotate-6" />
+            <img src="/assets/crown-white.svg" alt="" className="w-8 h-8 sm:w-12 sm:h-12 object-contain rotate-6" />
           </div>
 
-          <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-10 gap-y-6 text-black">
+          <div className="grid grid-cols-4 justify-items-center gap-y-3 lg:flex lg:flex-wrap lg:items-center lg:justify-between lg:gap-x-10 lg:gap-y-6 text-black">
             {partners.map((p) => (
               <motion.div
                 key={p}
                 whileHover={{ scale: 1.08 }}
-                className="select-none cursor-default"
+                className="select-none cursor-default max-sm:scale-[0.62]"
               >
                 <PartnerLogo name={p} />
               </motion.div>

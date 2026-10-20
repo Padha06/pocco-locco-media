@@ -95,7 +95,7 @@ function YellowCrown({ className }) {
 }
 
 const cardClass =
-  'bg-white/90 backdrop-blur-sm rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-white';
+  'bg-white/90 backdrop-blur-sm rounded-md sm:rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-white';
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -162,7 +162,7 @@ export default function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative lg:h-[720px] lg:min-h-[680px] pt-28 sm:pt-32 lg:pt-0 overflow-hidden select-none"
+      className="relative lg:h-[720px] lg:min-h-[680px] pt-24 sm:pt-32 lg:pt-0 pb-6 sm:pb-10 lg:pb-0 overflow-hidden select-none"
     >
       {/* Bottom-left sketches + outline star */}
       <LeftSketches className="hidden md:block absolute -left-3 bottom-0 w-[110px] lg:w-[135px] h-auto pointer-events-none z-0" />
@@ -172,16 +172,16 @@ export default function Hero() {
         <path d="M4 40 C 40 10, 80 50, 120 24 S 180 30, 196 12" stroke="#9ca3af" strokeWidth="1.3" strokeLinecap="round" />
       </svg>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full h-full relative z-20 lg:z-10">
         <div className="lg:h-full flex items-center lg:pt-24">
 
           {/* LEFT COLUMN: Title artwork, copy, CTAs */}
-          <div className="w-full lg:w-[46%] relative z-20 pb-6 lg:pb-0">
+          <div className="w-[52%] sm:w-[50%] lg:w-[46%] relative z-20">
             <motion.div
               initial={{ opacity: 0, scale: 0.92, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="relative max-w-[580px] w-full mb-5 -ml-2"
+              className="relative max-w-[580px] w-full mb-2 sm:mb-5 -ml-1 sm:-ml-2"
               whileHover={{ scale: 1.02 }}
             >
               <img
@@ -195,7 +195,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base lg:text-[17px] text-gray-900 font-medium max-w-[470px] mb-7 leading-relaxed"
+              className="text-[11px] sm:text-base lg:text-[17px] text-gray-900 font-medium max-w-[470px] mb-4 sm:mb-7 leading-snug sm:leading-relaxed"
             >
               Pocco Locco Media is a performance marketing network connecting the
               right brands with the right audience through the right partners.
@@ -205,27 +205,27 @@ export default function Hero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-4"
+              className="relative z-30 flex flex-nowrap lg:flex-wrap items-center gap-2 sm:gap-4 w-[190%] sm:w-[200%] lg:w-auto"
             >
               <motion.a
                 href="#advertisers"
                 onClick={fireCtaConfetti}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="group inline-flex items-center gap-4 bg-[#FF1493] text-white text-sm font-black tracking-wide uppercase pl-6 pr-5 py-3.5 rounded-full hover:bg-pink-600 transition-all shadow-md shadow-pink-500/25"
+                className="group inline-flex items-center gap-2 sm:gap-4 bg-[#FF1493] text-white text-[10px] sm:text-sm font-black tracking-wide uppercase pl-3.5 sm:pl-6 pr-3 sm:pr-5 py-2.5 sm:py-3.5 rounded-full whitespace-nowrap hover:bg-pink-600 transition-all shadow-md shadow-pink-500/25"
               >
                 <span>I'M AN ADVERTISER</span>
-                <ArrowRight className="w-5 h-5 stroke-[2.5] transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 stroke-[2.5] transition-transform group-hover:translate-x-1" />
               </motion.a>
 
               <motion.a
                 href="#publishers"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
-                className="group inline-flex items-center gap-4 bg-white text-black border-2 border-black text-sm font-black tracking-wide uppercase pl-6 pr-5 py-3 rounded-full hover:bg-gray-50 transition-all"
+                className="group inline-flex items-center gap-2 sm:gap-4 bg-white text-black border-2 border-black text-[10px] sm:text-sm font-black tracking-wide uppercase pl-3.5 sm:pl-6 pr-3 sm:pr-5 py-2 sm:py-3 rounded-full whitespace-nowrap hover:bg-gray-50 transition-all"
               >
                 <span>I'M A PUBLISHER</span>
-                <ArrowRight className="w-5 h-5 stroke-[2.5] transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-5 sm:h-5 stroke-[2.5] transition-transform group-hover:translate-x-1" />
               </motion.a>
             </motion.div>
           </div>
@@ -236,7 +236,7 @@ export default function Hero() {
           On desktop it is pinned to the section's bottom-right like the client mockup. */}
       <div
         key={animationKey}
-        className="relative lg:absolute lg:right-0 lg:bottom-0 w-full lg:w-[55%] max-w-[820px] mx-auto lg:mx-0 aspect-[1024/762] z-10"
+        className="absolute right-0 top-[92px] w-[56%] sm:right-0 sm:top-28 sm:w-[52%] lg:top-auto lg:bottom-0 lg:w-[55%] max-w-[820px] aspect-[1024/762] z-10"
       >
         {/* Yellow sun behind the head */}
         <motion.div
@@ -304,13 +304,13 @@ export default function Hero() {
         <motion.div
           style={{ y: stat1Y }}
           {...statAnim(0.15)}
-          className={`absolute right-1 sm:right-auto sm:left-[54%] top-[9%] z-20 ${cardClass} px-2 py-1.5 sm:pl-4 sm:pr-3 sm:py-2.5 flex items-center gap-1.5 sm:gap-3`}
+          className={`absolute left-[46%] sm:left-[54%] top-[9%] z-20 ${cardClass} px-1.5 py-1 sm:pl-3 sm:pr-2 sm:py-1.5 lg:pl-4 lg:pr-3 lg:py-2.5 flex items-center gap-1.5 sm:gap-3`}
         >
           <div className="flex flex-col">
-            <span className="text-[9px] sm:text-xs font-semibold text-gray-500 whitespace-nowrap">Leads Generated</span>
-            <span className="text-base sm:text-[28px] font-black text-[#10B981] leading-tight">12.5M+</span>
+            <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Leads Generated</span>
+            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-[#10B981] leading-tight">12.5M+</span>
           </div>
-          <svg viewBox="0 0 60 40" fill="none" className="w-6 sm:w-14 h-auto">
+          <svg viewBox="0 0 60 40" fill="none" className="w-4 sm:w-8 lg:w-14 h-auto">
             <path d="M3 34 L18 20 L28 28 L50 8" stroke="#10B981" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M38 6 L52 6 L52 20" stroke="#10B981" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -322,28 +322,28 @@ export default function Hero() {
           {...statAnim(0.2)}
           whileHover={{ scale: 1.12 }}
           whileTap={{ scale: 0.9 }}
-          className="absolute left-[86%] top-[19%] z-20 hidden sm:flex w-7 h-7 sm:w-12 sm:h-12 rounded-full bg-[#FF1493] items-center justify-center text-white shadow-lg shadow-pink-500/40"
+          className="absolute left-[88%] top-[24%] sm:left-[86%] sm:top-[19%] z-20 flex w-6 h-6 sm:w-9 sm:h-9 lg:w-12 lg:h-12 rounded-full bg-[#FF1493] items-center justify-center text-white shadow-lg shadow-pink-500/40"
           title="Watch video"
         >
-          <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-white ml-0.5" />
+          <Play className="w-3 h-3 sm:w-5 sm:h-5 fill-white ml-0.5" />
         </motion.button>
 
         {/* STAT CARD 2: Countries */}
         <motion.div
           style={{ y: stat2Y }}
           {...statAnim(0.25)}
-          className={`absolute right-1 sm:right-auto sm:left-[60%] top-[33%] z-20 ${cardClass} px-2 py-1.5 sm:pl-3 sm:pr-6 sm:py-2.5 flex items-center gap-1.5 sm:gap-3`}
+          className={`absolute left-[54%] sm:left-[60%] top-[33%] z-20 ${cardClass} px-1.5 py-1 sm:pl-2 sm:pr-4 sm:py-1.5 lg:pl-3 lg:pr-6 lg:py-2.5 flex items-center gap-1.5 sm:gap-3`}
         >
-          <div className="w-6 h-6 sm:w-11 sm:h-11 rounded-full bg-[#1E88E5] flex items-center justify-center text-white shadow-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-4 h-4 sm:w-7 sm:h-7">
+          <div className="w-4 h-4 sm:w-8 sm:h-8 lg:w-11 lg:h-11 rounded-full bg-[#1E88E5] flex items-center justify-center text-white shadow-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-3 h-3 sm:w-5 sm:h-5 lg:w-7 lg:h-7">
               <circle cx="12" cy="12" r="9.5" />
               <ellipse cx="12" cy="12" rx="4.2" ry="9.5" />
               <path d="M2.5 12h19M4 7h16M4 17h16" />
             </svg>
           </div>
           <div className="flex flex-col">
-            <span className="text-[9px] sm:text-xs font-semibold text-gray-500 whitespace-nowrap">Countries</span>
-            <span className="text-base sm:text-[28px] font-black text-black leading-tight">120+</span>
+            <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Countries</span>
+            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-black leading-tight">120+</span>
           </div>
         </motion.div>
 
@@ -351,13 +351,13 @@ export default function Hero() {
         <motion.div
           style={{ y: stat3Y }}
           {...statAnim(0.35)}
-          className={`absolute right-1 sm:right-auto sm:left-[59%] top-[55%] z-20 ${cardClass} px-2 py-1.5 sm:pl-4 sm:pr-3 sm:py-2.5 flex items-center gap-1.5 sm:gap-4`}
+          className={`absolute left-[50%] sm:left-[59%] top-[55%] z-20 ${cardClass} px-1.5 py-1 sm:pl-3 sm:pr-2 sm:py-1.5 lg:pl-4 lg:pr-3 lg:py-2.5 flex items-center gap-1.5 sm:gap-4`}
         >
           <div className="flex flex-col">
-            <span className="text-[9px] sm:text-xs font-semibold text-gray-500 whitespace-nowrap">Payouts Processed</span>
-            <span className="text-base sm:text-[28px] font-black text-[#FF1493] leading-tight">$8.7M+</span>
+            <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Payouts Processed</span>
+            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-[#FF1493] leading-tight">$8.7M+</span>
           </div>
-          <Sun className="w-5 h-5 sm:w-10 sm:h-10 text-[#FFC22E] fill-[#FFD95A] stroke-[2.2]" />
+          <Sun className="w-3.5 h-3.5 sm:w-6 sm:h-6 lg:w-10 lg:h-10 text-[#FFC22E] fill-[#FFD95A] stroke-[2.2]" />
         </motion.div>
       </div>
     </section>
