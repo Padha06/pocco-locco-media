@@ -208,7 +208,7 @@ export default function Hero() {
               className="relative z-30 flex flex-nowrap lg:flex-wrap items-center gap-2 sm:gap-4 w-[190%] sm:w-[200%] lg:w-auto"
             >
               <motion.a
-                href="#advertisers"
+                href="/advertisers"
                 onClick={fireCtaConfetti}
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
@@ -219,7 +219,7 @@ export default function Hero() {
               </motion.a>
 
               <motion.a
-                href="#publishers"
+                href="/publishers"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
                 className="group inline-flex items-center gap-2 sm:gap-4 bg-white text-black border-2 border-black text-[10px] sm:text-sm font-black tracking-wide uppercase pl-3.5 sm:pl-6 pr-3 sm:pr-5 py-2 sm:py-3 rounded-full whitespace-nowrap hover:bg-gray-50 transition-all"

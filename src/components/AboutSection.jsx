@@ -164,7 +164,8 @@ export default function AboutSection() {
               </p>
 
               {/* Action Button: Black Pill + Pink Circle Arrow with Confetti */}
-              <motion.button
+              <motion.a
+                href="/about"
                 onClick={(e) => {
                   const rect = e.currentTarget.getBoundingClientRect();
                   confetti({
@@ -185,7 +186,7 @@ export default function AboutSection() {
                 <span className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#FF1493] flex items-center justify-center text-white ml-2 sm:ml-4 transition-transform group-hover:translate-x-1 shadow-sm">
                   <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                 </span>
-              </motion.button>
+              </motion.a>
             </motion.div>
 
           </div>

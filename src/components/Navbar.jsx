@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, Menu, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function Navbar() {
+export default function Navbar({ path = '/' }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -29,13 +29,13 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: 'HOME', href: '#home', active: true },
-    { name: 'ABOUT US', href: '#about' },
-    { name: 'ADVERTISERS', href: '#advertisers' },
-    { name: 'PUBLISHERS', href: '#publishers' },
+    { name: 'HOME', href: '/' },
+    { name: 'ABOUT US', href: '/about' },
+    { name: 'ADVERTISERS', href: '/advertisers' },
+    { name: 'PUBLISHERS', href: '/publishers' },
     { name: 'OUR TEAM', href: '#team' },
     { name: 'JOBS', href: '#jobs' },
-  ];
+  ].map((link) => ({ ...link, active: link.href === path }));
 
   return (
     <header
@@ -50,7 +50,7 @@ export default function Navbar() {
           
           {/* Brand Logo: Big on landing/hero (h-24), sleek & compact when scrolled (h-11) */}
           <motion.a
-            href="#home"
+            href="/"
             className="flex items-center cursor-pointer group py-0.5"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}

@@ -240,9 +240,9 @@ export default function ContactAndCta() {
             </div>
 
             {[
-              { title: 'COMPANY', links: [['About Us', '#about'], ['Our Team', '#team'], ['Careers', '#jobs'], ['News & Resources', '#news']] },
-              { title: 'ADVERTISERS', links: [['Overview', '#advertisers'], ['Solutions', '#advertisers'], ['Case Studies', '#cases'], ['Contact Us', '#contact']] },
-              { title: 'PUBLISHERS', links: [['Overview', '#publishers'], ['How It Works', '#how-it-works'], ['FAQ', '#faq'], ['Contact Us', '#contact']] },
+              { title: 'COMPANY', links: [['About Us', '/about'], ['Our Team', '#team'], ['Careers', '#jobs'], ['News & Resources', '#news']] },
+              { title: 'ADVERTISERS', links: [['Overview', '/advertisers'], ['Solutions', '/advertisers#how'], ['Case Studies', '/#cases'], ['Contact Us', '#contact']] },
+              { title: 'PUBLISHERS', links: [['Overview', '/publishers'], ['How It Works', '/publishers#how'], ['FAQ', '#faq'], ['Contact Us', '#contact']] },
               { title: 'LET’S TALK', links: [['Support', '#contact'], ['Events', '#contact'], ['Partnerships', '#contact'], ['Let’s Talk', '#contact']] },
             ].map((col) => (
               <div key={col.title} className="col-span-1 lg:col-span-2">

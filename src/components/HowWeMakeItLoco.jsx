@@ -344,7 +344,8 @@ export default function HowWeMakeItLoco() {
                   </ul>
                 </div>
 
-                <motion.button
+                <motion.a
+                  href="/advertisers"
                   onClick={(e) => triggerAction(e, 'pink')}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
@@ -354,7 +355,7 @@ export default function HowWeMakeItLoco() {
                   <span className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#FF1493] flex items-center justify-center text-white ml-2 sm:ml-4 transition-transform group-hover:translate-x-1 shadow-sm">
                     <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </span>
-                </motion.button>
+                </motion.a>
               </div>
             </div>
           </motion.div>
@@ -400,7 +401,8 @@ export default function HowWeMakeItLoco() {
                   </ul>
                 </div>
 
-                <motion.button
+                <motion.a
+                  href="/publishers"
                   onClick={(e) => triggerAction(e, 'blue')}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
@@ -410,7 +412,7 @@ export default function HowWeMakeItLoco() {
                   <span className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#0099FF] flex items-center justify-center text-white ml-2 sm:ml-4 transition-transform group-hover:translate-x-1 shadow-sm">
                     <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </span>
-                </motion.button>
+                </motion.a>
               </div>
 
               {/* Right Column: Mascot Blue Peace Hand */}
