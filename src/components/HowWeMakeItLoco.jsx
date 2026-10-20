@@ -4,6 +4,104 @@ import { Check, ArrowRight } from 'lucide-react';
 import { DoodleCrown } from './Doodles';
 import confetti from 'canvas-confetti';
 
+// Gesture beats for each mascot. The artwork is a single image, so a gesture is a
+// lean/shake toward the raised fingers with comic flash lines, not moving fingers.
+const GESTURES = {
+  // Blue publisher: lean toward the two-finger victory sign
+  peace: { rotate: [0, -12, -9, -12, 0], scale: [1, 1.08, 1.04, 1.08, 1], x: [0, -6, -4, -6, 0] },
+  // Pink advertiser: rock-on headbang shake
+  rock: { rotate: [0, 10, -8, 10, -6, 0], scale: [1, 1.08, 1.05, 1.08, 1.05, 1], y: [0, -6, 0, -6, 0, 0] },
+};
+
+// Mascot that bursts out of the card's background, then repeats its hand gesture
+function PopMascot({ src, alt, glow, shadow, gesture, flashClass }) {
+  const [peaceKey, setPeaceKey] = useState(0);
+
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="shown"
+      viewport={{ once: true, amount: 0.5 }}
+      onHoverStart={() => setPeaceKey((k) => k + 1)}
+      className="relative cursor-pointer max-w-[200px] w-full"
+    >
+      {/* Glow + splash ring that opens up first, like a portal in the background */}
+      <motion.div
+        variants={{
+          hidden: { scale: 0, opacity: 0 },
+          shown: { scale: [0, 1.25, 1], opacity: [0, 0.9, 0.55], transition: { duration: 0.6 } },
+        }}
+        style={{ background: `radial-gradient(circle, ${glow}, transparent 70%)` }}
+        className="absolute inset-[12%] rounded-full pointer-events-none"
+      />
+
+      {/* Emerges from depth: tiny, blurred and low, then overshoots forward and settles */}
+      <motion.div
+        variants={{
+          hidden: { scale: 0.25, y: 70, rotate: -18, opacity: 0, filter: 'blur(10px)' },
+          shown: {
+            scale: [0.25, 1.18, 0.94, 1],
+            y: [70, -12, 4, 0],
+            rotate: [-18, 6, -3, 0],
+            opacity: [0, 1, 1, 1],
+            filter: ['blur(10px)', 'blur(0px)', 'blur(0px)', 'blur(0px)'],
+            transition: { duration: 0.95, delay: 0.25, ease: [0.22, 1, 0.36, 1] },
+          },
+        }}
+      >
+        {/* Idle float once it has landed */}
+        <motion.div
+          animate={{ y: [4, -4, 4] }}
+          transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut', delay: 2.2 }}
+        >
+          {/* Hand gesture beat, repeats every few seconds */}
+          <motion.div
+            key={peaceKey}
+            animate={GESTURES[gesture]}
+            transition={{
+              duration: 1.1,
+              delay: peaceKey === 0 ? 1.3 : 0,
+              repeat: Infinity,
+              repeatDelay: 3,
+              ease: 'easeInOut',
+            }}
+            style={{ transformOrigin: '50% 85%' }}
+            className="relative"
+          >
+            <img
+              src={src}
+              alt={alt}
+              style={{ filter: `drop-shadow(0 12px 24px ${shadow})` }}
+              className="w-full h-auto object-contain"
+            />
+
+            {/* Comic flash lines around the raised fingers, timed with the gesture */}
+            <motion.svg
+              key={`flash-${peaceKey}`}
+              viewBox="0 0 60 60"
+              fill="none"
+              animate={{ opacity: [0, 0, 1, 1, 0], scale: [0.6, 0.6, 1.1, 1, 0.8] }}
+              transition={{
+                duration: 1.1,
+                delay: peaceKey === 0 ? 1.3 : 0,
+                repeat: Infinity,
+                repeatDelay: 3,
+                times: [0, 0.2, 0.4, 0.75, 1],
+              }}
+              className={`absolute w-[30%] pointer-events-none ${flashClass}`}
+            >
+              <path d="M30 4 L30 16" stroke="#FFD600" strokeWidth="5" strokeLinecap="round" />
+              <path d="M10 14 L18 23" stroke="#FFD600" strokeWidth="5" strokeLinecap="round" />
+              <path d="M50 14 L42 23" stroke="#FFD600" strokeWidth="5" strokeLinecap="round" />
+              <path d="M30 4 L30 16 M10 14 L18 23 M50 14 L42 23" stroke="#111" strokeWidth="1.6" strokeLinecap="round" opacity="0.35" />
+            </motion.svg>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function HowWeMakeItLoco() {
   const steps = [
     {
@@ -209,18 +307,14 @@ export default function HowWeMakeItLoco() {
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
               {/* Left Column: Mascot Pink Rock Hand */}
               <div className="sm:col-span-5 flex justify-center">
-                <motion.div
-                  animate={{ y: [-5, 5, -5] }}
-                  transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-                  whileHover={{ scale: 1.08, rotate: [0, -4, 4, 0] }}
-                  className="cursor-pointer max-w-[200px] w-full"
-                >
-                  <img
-                    src="/assets/mascot-pink-hand.webp"
-                    alt="Pocco Locco Advertisers Mascot"
-                    className="w-full h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(255,20,147,0.25)]"
-                  />
-                </motion.div>
+                <PopMascot
+                  src="/assets/mascot-pink-hand.webp"
+                  alt="Pocco Locco Advertisers Mascot"
+                  glow="rgba(255,20,147,0.4)"
+                  shadow="rgba(255,20,147,0.25)"
+                  gesture="rock"
+                  flashClass="-top-[8%] left-[22%]"
+                />
               </div>
 
               {/* Right Column: Advertisers Content */}
@@ -321,18 +415,14 @@ export default function HowWeMakeItLoco() {
 
               {/* Right Column: Mascot Blue Peace Hand */}
               <div className="sm:col-span-5 flex justify-center order-1 sm:order-2">
-                <motion.div
-                  animate={{ y: [5, -5, 5] }}
-                  transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
-                  whileHover={{ scale: 1.08, rotate: [0, 4, -4, 0] }}
-                  className="cursor-pointer max-w-[200px] w-full"
-                >
-                  <img
-                    src="/assets/mascot-blue-hand.webp"
-                    alt="Pocco Locco Publishers Mascot"
-                    className="w-full h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,153,255,0.25)]"
-                  />
-                </motion.div>
+                <PopMascot
+                  src="/assets/mascot-blue-hand.webp"
+                  alt="Pocco Locco Publishers Mascot"
+                  glow="rgba(0,153,255,0.45)"
+                  shadow="rgba(0,153,255,0.25)"
+                  gesture="peace"
+                  flashClass="-top-[6%] left-[2%]"
+                />
               </div>
             </div>
           </motion.div>
