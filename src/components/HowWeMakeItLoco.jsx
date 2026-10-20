@@ -80,7 +80,7 @@ export default function HowWeMakeItLoco() {
       
       {/* 1. BLACK BANNER FOR 5 STEPS WITH EXACT CLIENT BACKGROUND (NOT OVER-ZOOMED) */}
       <div
-        className="relative w-full bg-[#0c0d11] text-white pt-14 pb-28 sm:pt-16 sm:pb-36 lg:pt-20 lg:pb-40 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative w-full bg-[#0c0d11] text-white pt-10 pb-28 sm:pt-12 sm:pb-32 lg:pt-12 lg:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden"
         style={{
           backgroundImage: "url('/assets/bg-how-we-make-it-locco.webp')",
           backgroundSize: '100% 100%',
@@ -91,7 +91,7 @@ export default function HowWeMakeItLoco() {
         <div className="max-w-7xl mx-auto relative z-10">
           
           {/* Section Header with Crowns Nestled Exactly Around Title */}
-          <div className="flex items-center justify-center mb-10 sm:mb-14">
+          <div className="flex items-center justify-center mb-6 sm:mb-8">
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -109,7 +109,7 @@ export default function HowWeMakeItLoco() {
               />
 
               {/* Centered Heading with distinct space between each word */}
-              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase drop-shadow-md text-center inline-flex items-center justify-center flex-wrap gap-x-3 sm:gap-x-4.5">
+              <h2 className="font-display text-3xl sm:text-5xl lg:text-[56px] uppercase drop-shadow-md text-center inline-flex items-center justify-center flex-wrap gap-x-3 sm:gap-x-4.5">
                 <span className="text-white">HOW</span>
                 <span className="text-white">WE</span>
                 <span className="text-white">MAKE</span>
@@ -190,7 +190,7 @@ export default function HowWeMakeItLoco() {
       </div>
 
       {/* 2. THE 2 CARDS (OVERLAPPING THE BANNER ON CLEAN WHITE BACKGROUND) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-24 lg:-mt-28 relative z-20 pb-4 sm:pb-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-24 lg:-mt-24 relative z-20 pb-2">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
           
           {/* Card 1: FOR ADVERTISERS */}
@@ -204,7 +204,7 @@ export default function HowWeMakeItLoco() {
             }}
             transition={{ type: 'spring', stiffness: 220, damping: 20 }}
             style={{ perspective: 1000 }}
-            className="bg-white text-black rounded-[32px] sm:rounded-[36px] p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.08)] relative overflow-hidden border border-gray-100 flex flex-col justify-between"
+            className="bg-white text-black rounded-[28px] p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.08)] relative overflow-hidden border border-gray-100 flex flex-col justify-between"
           >
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
               {/* Left Column: Mascot Pink Rock Hand */}
@@ -226,7 +226,7 @@ export default function HowWeMakeItLoco() {
               {/* Right Column: Advertisers Content */}
               <div className="sm:col-span-7 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#FF1493] tracking-tight mb-2">
+                  <h3 className="font-display text-3xl lg:text-[40px] leading-none uppercase text-[#FF1493] mb-2">
                     FOR ADVERTISERS
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-700 font-semibold mb-5 leading-snug">
@@ -276,13 +276,13 @@ export default function HowWeMakeItLoco() {
             }}
             transition={{ type: 'spring', stiffness: 220, damping: 20 }}
             style={{ perspective: 1000 }}
-            className="bg-white text-black rounded-[32px] sm:rounded-[36px] p-6 sm:p-8 lg:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.08)] relative overflow-hidden border border-gray-100 flex flex-col justify-between"
+            className="bg-white text-black rounded-[28px] p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.08)] relative overflow-hidden border border-gray-100 flex flex-col justify-between"
           >
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 items-center">
               {/* Left Column: Publishers Content */}
               <div className="sm:col-span-7 flex flex-col justify-between order-2 sm:order-1">
                 <div>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#0099FF] tracking-tight mb-2">
+                  <h3 className="font-display text-3xl lg:text-[40px] leading-none uppercase text-[#0099FF] mb-2">
                     FOR PUBLISHERS
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-700 font-semibold mb-5 leading-snug">

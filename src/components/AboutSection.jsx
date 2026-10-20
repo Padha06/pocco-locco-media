@@ -42,19 +42,19 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" ref={containerRef} className="pt-16 sm:pt-20 lg:pt-24 pb-20 sm:pb-28 lg:pb-32 bg-white relative overflow-hidden select-none">
+    <section id="about" ref={containerRef} className="pt-6 sm:pt-8 pb-8 sm:pb-10 bg-white relative overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* =========================================================================
             TOP BLOCK: Character with Yellow Backdrop + Copy + "MORE THAN MARKETING"
            ========================================================================= */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-20 sm:mb-28 lg:mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-8 sm:mb-10">
           
           {/* Left Column: 3D Guy with Laptop + Yellow Paint Splatter Backdrop + Doodles */}
           <div className="lg:col-span-6 relative flex justify-center items-center">
             
             {/* Custom Golden-Yellow Paint Circle Backdrop with Splatters */}
-            <div className="absolute w-[320px] h-[320px] sm:w-[410px] sm:h-[410px] lg:w-[470px] lg:h-[470px] top-1/2 left-1/2 -translate-x-[52%] -translate-y-[52%] z-0 pointer-events-none select-none">
+            <div className="absolute w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] lg:w-[410px] lg:h-[410px] top-1/2 left-1/2 -translate-x-[52%] -translate-y-[52%] z-0 pointer-events-none select-none">
               <img
                 src="/assets/about-yellow-backdrop.svg"
                 alt="Yellow Splatter Backdrop"
@@ -103,7 +103,7 @@ export default function AboutSection() {
             <motion.div
               style={{ y: laptopGuyY }}
               whileHover={{ scale: 1.02 }}
-              className="relative z-10 max-w-[340px] sm:max-w-[430px] lg:max-w-[480px] w-full cursor-pointer"
+              className="relative z-10 max-w-[320px] sm:max-w-[380px] lg:max-w-[420px] w-full cursor-pointer"
             >
               <img
                 src="/assets/about-man-laptop.webp"
@@ -121,7 +121,7 @@ export default function AboutSection() {
             <motion.div
               animate={{ y: [-3, 3, -3], rotate: [-1, 2, -1] }}
               transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
-              className="absolute -top-12 sm:-top-16 right-0 sm:right-2 w-36 sm:w-44 lg:w-48 pointer-events-none select-none z-20"
+              className="absolute top-0 lg:top-6 right-0 lg:-right-4 w-24 sm:w-32 lg:w-36 pointer-events-none select-none z-20"
             >
               <img
                 src="/assets/more-than-marketing.webp"
@@ -136,17 +136,15 @@ export default function AboutSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="pt-4 lg:pt-0"
+              className="pt-4 lg:pt-0 pr-24 sm:pr-32 lg:pr-28"
             >
-              <span className="text-sm sm:text-base font-black text-black uppercase tracking-wider block mb-1">
-                ABOUT
-              </span>
-              <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-black text-black uppercase tracking-tight leading-[1.08] mb-5">
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-[54px] text-black uppercase leading-[1.05] mb-4 whitespace-nowrap">
+                ABOUT <br />
                 POCCO LOCCO <span className="text-[#FF1493]">MEDIA</span>
               </h2>
 
               {/* Paragraph with matched generous gap below as per client mockup */}
-              <p className="text-sm sm:text-base lg:text-[17px] text-gray-700 font-medium leading-relaxed mb-10 sm:mb-12 lg:mb-14 max-w-xl">
+              <p className="text-sm sm:text-base lg:text-[17px] text-gray-700 font-medium leading-relaxed mb-6 max-w-xl">
                 Pocco Locco Media is a global performance marketing network. We
                 connect advertisers with high-quality publishers to drive real
                 business growth through data-driven strategies, innovative
@@ -188,7 +186,7 @@ export default function AboutSection() {
         <div className="relative">
           
           {/* Section Header with Doodle Arrow on Left & Crown on Right */}
-          <div className="relative flex items-center justify-center mb-12 sm:mb-16">
+          <div className="relative flex items-center justify-center mb-6 sm:mb-8">
             
             {/* Doodle Curved Arrow from bottom-left (under character) pointing to title */}
             <motion.div
@@ -215,7 +213,7 @@ export default function AboutSection() {
             </motion.div>
 
             {/* Centered Heading */}
-            <h2 className="text-2xl sm:text-4xl font-black text-black tracking-tight uppercase text-center">
+            <h2 className="font-display text-3xl sm:text-5xl text-black uppercase text-center">
               WHY WORK WITH <span className="text-[#FF1493]">POCCO LOCCO?</span>
             </h2>
 

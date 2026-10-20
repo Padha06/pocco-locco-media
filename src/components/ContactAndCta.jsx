@@ -1,13 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowRight, MapPin, Mail, Send } from 'lucide-react';
-import { DoodleCrown, DoodleStar } from './Doodles';
+import { ArrowRight, MapPin, Mail } from 'lucide-react';
+import { DoodleStar } from './Doodles';
+import { SocialRow } from './SocialIcons';
 import confetti from 'canvas-confetti';
+
+const inputClass =
+  'w-full bg-white border border-white rounded-md px-3.5 py-2.5 text-sm font-medium text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF1493] shadow-sm';
 
 export default function ContactAndCta() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     subject: '',
     message: '',
   });
@@ -20,10 +25,11 @@ export default function ContactAndCta() {
     offset: ['start end', 'end start'],
   });
 
-  // Rocket moves up and across on scroll
-  const rocketX = useTransform(scrollYProgress, [0, 1], [-40, 40]);
-  const rocketY = useTransform(scrollYProgress, [0, 1], [30, -40]);
-  const rocketRotate = useTransform(scrollYProgress, [0, 1], [5, -12]);
+  // Rocket drifts up and across on scroll
+  const rocketX = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+  const rocketY = useTransform(scrollYProgress, [0, 1], [20, -20]);
+
+  const update = (key) => (e) => setFormData({ ...formData, [key]: e.target.value });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,341 +38,244 @@ export default function ContactAndCta() {
       particleCount: 70,
       spread: 80,
       origin: { y: 0.6 },
-      colors: ['#FF1B7A', '#FFD600', '#00B4D8'],
+      colors: ['#FF1493', '#FFD600', '#0099FF'],
     });
     setTimeout(() => setSubmitted(false), 4000);
   };
 
   return (
     <>
-      {/* CONTACT US SECTION */}
-      <section id="contact" className="py-20 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Main Vibrant Cyan Card */}
-          <div className="bg-[#a5f3fc]/60 border-2 border-[#67e8f9] rounded-3xl p-6 sm:p-12 relative overflow-hidden shadow-2xl backdrop-blur-sm">
-            
-            {/* Background floating doodle stars */}
-            <div className="absolute top-8 left-8">
-              <DoodleStar className="w-8 h-8 text-yellow-400 fill-yellow-400" />
-            </div>
-            <div className="absolute bottom-8 left-12">
-              <DoodleStar className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-            </div>
-            <div className="absolute top-12 right-1/3">
-              <DoodleCrown className="w-10 h-10 text-yellow-500" />
-            </div>
+      {/* CONTACT US + READY TO GROW share one continuous sky backdrop */}
+      <div className="bg-sky relative overflow-hidden">
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
-              
+        {/* Scattered doodle stars across the sky (desktop only, they crowd the stacked mobile layout) */}
+        <div className="hidden lg:block">
+        <DoodleStar className="absolute top-[30%] left-[2%] w-5 h-5 text-black fill-[#FFD600] stroke-[5]" />
+        <DoodleStar className="absolute top-[56%] left-[1%] w-4 h-4 text-black fill-[#FF1493] stroke-[5]" />
+        <DoodleStar className="absolute bottom-[8%] left-[3%] w-5 h-5 text-black fill-[#FFD600] stroke-[5]" />
+        <DoodleStar className="absolute bottom-[22%] left-[44%] w-7 h-7 text-black fill-[#FFD600] stroke-[5]" />
+        <DoodleStar className="absolute bottom-[6%] left-[40%] w-4 h-4 text-black fill-[#FFD600] stroke-[5]" />
+        <DoodleStar className="absolute top-[4%] right-[3%] w-6 h-6 text-black fill-[#FFD600] stroke-[5]" />
+        </div>
+
+        {/* CONTACT US SECTION */}
+        <section id="contact" className="relative pt-8 sm:pt-10 pb-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 items-start relative z-10">
+
               {/* Left Column: Form */}
-              <div className="lg:col-span-6">
-                <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase mb-8">
-                  CONTACT <span className="text-[#FF1B7A]">US</span>
+              <div className="lg:col-span-5">
+                <h2 className="font-display text-4xl sm:text-5xl text-black uppercase leading-none mb-5">
+                  CONTACT <span className="text-[#FF1493]">US</span>
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      required
-                      placeholder="Your Name *"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full bg-white/95 border border-cyan-200 rounded-xl px-4 py-3 text-xs sm:text-sm font-semibold text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 shadow-sm"
-                    />
-                    <input
-                      type="email"
-                      required
-                      placeholder="Your Email Address *"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-white/95 border border-cyan-200 rounded-xl px-4 py-3 text-xs sm:text-sm font-semibold text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 shadow-sm"
-                    />
+                <form onSubmit={handleSubmit} className="space-y-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <input type="text" required placeholder="Your Name *" value={formData.name} onChange={update('name')} className={inputClass} />
+                    <input type="email" required placeholder="Your Email Address *" value={formData.email} onChange={update('email')} className={inputClass} />
                   </div>
-
-                  <input
-                    type="text"
-                    required
-                    placeholder="What's the Subject?"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full bg-white/95 border border-cyan-200 rounded-xl px-4 py-3 text-xs sm:text-sm font-semibold text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 shadow-sm"
-                  />
-
-                  <textarea
-                    rows="4"
-                    required
-                    placeholder="Your Message..."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-white/95 border border-cyan-200 rounded-xl px-4 py-3 text-xs sm:text-sm font-semibold text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-500 shadow-sm resize-none"
-                  />
+                  <input type="tel" placeholder="Your Phone Number" value={formData.phone} onChange={update('phone')} className={inputClass} />
+                  <input type="text" required placeholder="What's the Subject?" value={formData.subject} onChange={update('subject')} className={inputClass} />
+                  <textarea rows="2" required placeholder="Your Message..." value={formData.message} onChange={update('message')} className={`${inputClass} resize-none`} />
 
                   <motion.button
                     type="submit"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="group inline-flex items-center gap-3 bg-[#FFD600] text-black text-xs font-black tracking-wider uppercase pl-6 pr-2.5 py-3 rounded-full hover:bg-yellow-400 transition-all shadow-md shadow-yellow-500/20"
+                    className="group !mt-5 inline-flex items-center gap-4 bg-[#FFD600] text-black text-sm font-black tracking-wide uppercase pl-7 pr-1.5 py-1.5 rounded-full hover:bg-[#ffcc00] transition-all shadow-md"
                   >
                     <span>{submitted ? 'MESSAGE SENT!' : 'SEND MESSAGE'}</span>
-                    <span className="w-6 h-6 rounded-full bg-black flex items-center justify-center text-white transition-transform group-hover:translate-x-1">
-                      <ArrowRight className="w-3.5 h-3.5" />
+                    <span className="w-9 h-9 rounded-full bg-black flex items-center justify-center text-white transition-transform group-hover:translate-x-1">
+                      <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                     </span>
                   </motion.button>
                 </form>
               </div>
 
-              {/* Right Column: Info & Cool Woman Mascot */}
-              <div className="lg:col-span-6 flex flex-col justify-between">
-                
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-sm font-black text-black tracking-wider uppercase mb-3">
-                      GET IN TOUCH
-                    </h3>
-                    <div className="space-y-2.5 text-xs font-bold text-gray-800">
-                      <p className="flex items-start gap-2.5">
-                        <MapPin className="w-4 h-4 text-black shrink-0 mt-0.5" />
-                        <span>Leidsestraat 104, 1017 DE Amsterdam, The Netherlands</span>
-                      </p>
-                      <p className="flex items-center gap-2.5">
-                        <Mail className="w-4 h-4 text-black shrink-0" />
-                        <a href="mailto:info@poccoloccomedia.com" className="hover:text-pink-600 underline">
-                          info@poccoloccomedia.com
-                        </a>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Newsletter */}
-                  <div>
-                    <h4 className="text-xs font-black text-black tracking-wider uppercase mb-2">
-                      SUBSCRIBE TO OUR NEWSLETTER
-                    </h4>
-                    <div className="flex gap-2 max-w-sm">
-                      <input
-                        type="email"
-                        placeholder="Your email address"
-                        value={newsletterEmail}
-                        onChange={(e) => setNewsletterEmail(e.target.value)}
-                        className="flex-1 bg-white/95 border border-cyan-200 rounded-xl px-3 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-pink-500"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (newsletterEmail) {
-                            confetti({ particleCount: 30 });
-                            setNewsletterEmail('');
-                          }
-                        }}
-                        className="bg-[#FF1B7A] text-white text-xs font-black px-4 py-2 rounded-xl hover:bg-pink-600 transition-colors uppercase shadow-sm"
-                      >
-                        OK
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Social links */}
-                  <div>
-                    <span className="text-[11px] font-black text-black tracking-wider uppercase block mb-2">
-                      FOLLOW US
+              {/* Middle Column: Get In Touch, Newsletter, Social */}
+              <div className="lg:col-span-4 lg:pl-2">
+                <h3 className="font-display text-3xl sm:text-4xl text-black uppercase leading-none mb-4">
+                  GET IN TOUCH
+                </h3>
+                <div className="space-y-3 text-sm font-semibold text-gray-900 mb-5">
+                  <p className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-black fill-black/10 shrink-0 mt-0.5" />
+                    <span>
+                      Leidsestraat 104<br />
+                      1017 DE Amsterdam<br />
+                      The Netherlands
                     </span>
-                    <div className="flex items-center gap-2">
-                      {['in', 'ig', 'tw', 'fb', 'yt'].map((platform, idx) => (
-                        <a
-                          key={idx}
-                          href="#contact"
-                          className="w-8 h-8 rounded-full bg-black text-white text-[11px] font-black flex items-center justify-center hover:bg-[#FF1B7A] transition-colors uppercase"
-                        >
-                          {platform}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
+                  </p>
+                  <p className="flex items-center gap-3">
+                    <Mail className="w-5 h-5 text-black shrink-0" />
+                    <a href="mailto:info@poccoloccomedia.com" className="hover:text-[#FF1493]">
+                      info@poccoloccomedia.com
+                    </a>
+                  </p>
                 </div>
 
-                {/* 3D Cool Woman Mascot with finger guns */}
-                <div className="relative mt-6 flex justify-end">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="max-w-[280px] w-full relative cursor-pointer"
+                <h4 className="font-display text-xl sm:text-2xl text-black uppercase leading-none mb-2.5">
+                  SUBSCRIBE TO OUR NEWSLETTER
+                </h4>
+                <div className="flex gap-2 max-w-sm mb-5">
+                  <input
+                    type="email"
+                    placeholder="Your email address"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    className={inputClass}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (newsletterEmail) {
+                        confetti({ particleCount: 30 });
+                        setNewsletterEmail('');
+                      }
+                    }}
+                    className="bg-[#FF1493] text-white text-sm font-black px-3.5 rounded-md hover:bg-pink-600 transition-colors uppercase shadow-sm"
                   >
-                    <img
-                      src="/assets/mascot-cool-woman.png"
-                      alt="Pocco Locco Let's Talk Mascot"
-                      className="w-full h-auto object-contain filter drop-shadow-xl"
-                    />
-                  </motion.div>
+                    OK
+                  </button>
                 </div>
 
+                <div className="flex items-center gap-3">
+                  <span className="font-display text-xl sm:text-2xl text-black uppercase leading-none">
+                    FOLLOW US
+                  </span>
+                  <SocialRow variant="dark" />
+                </div>
+              </div>
+
+              {/* Right Column: Let's Talk mascot */}
+              <div className="md:col-span-2 lg:col-span-3 flex justify-center lg:justify-end lg:-mr-6">
+                <motion.img
+                  src="/assets/contact-woman.png"
+                  alt="Pocco Locco Let's Talk Mascot"
+                  whileHover={{ scale: 1.04, rotate: -1 }}
+                  className="mask-feather w-full max-w-[340px] lg:max-w-[380px] h-auto object-contain lg:-mt-4"
+                />
               </div>
 
             </div>
-
           </div>
+        </section>
 
-        </div>
-      </section>
+        {/* READY TO GROW WITH POCCO LOCCO? */}
+        <section ref={ctaRef} className="relative pt-2 pb-6 sm:pb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
 
-      {/* READY TO GROW WITH POCCO LOCCO? FOOTER BANNER */}
-      <section
-        ref={ctaRef}
-        className="relative bg-gradient-to-r from-[#bae6fd] via-[#7dd3fc] to-[#38bdf8] py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
-      >
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8 relative z-10">
-          
-          {/* Left Text */}
-          <div className="max-w-xl text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 mb-2">
-              <DoodleStar className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-              <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase leading-tight">
+            {/* Left Text */}
+            <div className="lg:col-span-5 text-center lg:text-left">
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-[56px] text-black uppercase leading-[1.02] mb-3">
                 READY TO GROW <br />
-                WITH <span className="text-[#FF1B7A]">POCCO LOCCO?</span>
+                WITH <span className="text-[#FF1493]">POCCO LOCCO?</span>
               </h2>
+              <p className="text-sm sm:text-base text-gray-900 font-semibold mb-5 leading-snug">
+                Let’s build something amazing together.<br />
+                More traffic. More conversions. More growth.
+              </p>
+
+              <motion.a
+                href="#contact"
+                onClick={() => confetti({ particleCount: 60, colors: ['#FF1493', '#FFD600', '#0099FF'] })}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group inline-flex items-center gap-10 bg-black text-white text-sm font-black tracking-wide uppercase pl-7 pr-1.5 py-1.5 rounded-full hover:bg-neutral-900 transition-all shadow-xl"
+              >
+                <span className="inline-flex items-center gap-2">LET’S TALK <ArrowRight className="w-4 h-4 stroke-[2.5]" /></span>
+                <span className="w-9 h-9 rounded-full bg-[#FF1493] flex items-center justify-center text-white transition-transform group-hover:translate-x-1">
+                  <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                </span>
+              </motion.a>
             </div>
-            <p className="text-xs sm:text-sm text-gray-800 font-bold max-w-md mb-6 leading-relaxed">
-              Let's build something amazing together. More traffic. More conversions. More growth.
-            </p>
 
-            <motion.a
-              href="#contact"
-              onClick={() => confetti({ particleCount: 60 })}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group inline-flex items-center gap-3 bg-black text-white text-xs font-black tracking-wider uppercase pl-6 pr-2.5 py-3 rounded-full hover:bg-neutral-900 transition-all shadow-xl"
-            >
-              <span>LET'S TALK</span>
-              <span className="w-6 h-6 rounded-full bg-[#FF1B7A] flex items-center justify-center text-white transition-transform group-hover:translate-x-1">
-                <ArrowRight className="w-3.5 h-3.5" />
-              </span>
-            </motion.a>
-          </div>
-
-          {/* Right: Blasting Rocket Brain Astronaut Mascot */}
-          <div className="relative flex items-center justify-center">
-            
-            <motion.div
-              style={{
-                x: rocketX,
-                y: rocketY,
-                rotate: rocketRotate,
-              }}
-              className="max-w-[340px] w-full cursor-pointer select-none"
-              whileHover={{ scale: 1.1 }}
-            >
-              <img
-                src="/assets/mascot-rocket-brain.png"
+            {/* Center: Rocket Brain Mascot */}
+            <div className="lg:col-span-4 flex justify-center">
+              <motion.img
+                src="/assets/cta-rocket.png"
                 alt="Pocco Locco Rocket Brain Mascot"
-                className="w-full h-auto object-contain filter drop-shadow-2xl"
+                style={{ x: rocketX, y: rocketY }}
+                whileHover={{ scale: 1.06 }}
+                className="mask-feather w-full max-w-[460px] h-auto object-contain"
               />
-            </motion.div>
+            </div>
 
-            {/* Scribble "THE SKY IS JUST THE START" */}
-            <div className="absolute -top-4 right-2 text-right hidden sm:block pointer-events-none">
-              <span className="text-sm font-black uppercase tracking-tight block text-black">
-                THE SKY
-              </span>
-              <span className="text-sm font-black uppercase tracking-tight block text-black">
-                IS JUST
-              </span>
-              <span className="text-sm font-black uppercase tracking-tight block text-[#FF1B7A]">
-                THE START
-              </span>
-              <DoodleStar className="w-5 h-5 text-yellow-400 fill-yellow-400 ml-auto mt-1" />
+            {/* Right: hand-drawn "THE SKY IS JUST THE START" */}
+            <div className="hidden lg:flex lg:col-span-3 justify-center relative select-none pointer-events-none">
+              <DoodleStar className="absolute top-0 right-6 w-5 h-5 text-black fill-[#FF1493] stroke-[5]" />
+              <DoodleStar className="absolute bottom-0 right-2 w-7 h-7 text-black fill-[#FFD600] stroke-[5]" />
+              <DoodleStar className="absolute top-1/2 left-0 w-4 h-4 text-black fill-[#FF1493] stroke-[5]" />
+              <div className="font-marker text-black text-center -rotate-6 leading-[0.95]">
+                <span className="block text-[44px]">THE</span>
+                <span className="block text-[52px]">SKY</span>
+                <span className="block text-[30px]">IS JUST</span>
+                <span className="block text-[34px]">THE START</span>
+                <svg viewBox="0 0 160 14" className="w-40 h-3.5 mx-auto" fill="none">
+                  <path d="M4 10 Q 80 0, 156 6" stroke="#FFD600" strokeWidth="5" strokeLinecap="round" />
+                </svg>
+              </div>
             </div>
 
           </div>
-
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* FOOTER */}
-      <footer className="bg-[#0b0b0e] text-gray-400 py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-900">
+      <footer className="bg-black text-white pt-8 pb-5 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-            
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-12 gap-6 lg:gap-4 mb-6">
+
             {/* Logo column */}
-            <div className="col-span-2 md:col-span-1">
+            <div className="col-span-2 sm:col-span-3 lg:col-span-2">
               <img
-                src="/assets/logo.png"
+                src="/assets/logo.webp"
                 alt="Pocco Locco Media"
-                className="h-12 w-auto object-contain mb-4 filter brightness-110"
+                className="h-16 w-auto object-contain mb-2"
               />
-              <p className="text-[11px] text-gray-500 font-bold uppercase tracking-wider">
-                Brands G Crazy.
+              <p className="text-xs text-gray-300 font-semibold leading-snug max-w-[220px]">
+                Your success is our mission. Brands go crazy, results go further.
               </p>
             </div>
 
-            {/* Links columns */}
-            <div>
-              <h4 className="text-xs font-black text-white uppercase tracking-wider mb-4">
-                COMPANY
-              </h4>
-              <ul className="space-y-2 text-xs font-semibold">
-                <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
-                <li><a href="#team" className="hover:text-white transition-colors">Our Team</a></li>
-                <li><a href="#jobs" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#news" className="hover:text-white transition-colors">News & Resources</a></li>
-              </ul>
-            </div>
+            {[
+              { title: 'COMPANY', links: [['About Us', '#about'], ['Our Team', '#team'], ['Careers', '#jobs'], ['News & Resources', '#news']] },
+              { title: 'ADVERTISERS', links: [['Overview', '#advertisers'], ['Solutions', '#advertisers'], ['Case Studies', '#cases'], ['Contact Us', '#contact']] },
+              { title: 'PUBLISHERS', links: [['Overview', '#publishers'], ['How It Works', '#how-it-works'], ['FAQ', '#faq'], ['Contact Us', '#contact']] },
+              { title: 'LET’S TALK', links: [['Support', '#contact'], ['Events', '#contact'], ['Partnerships', '#contact'], ['Let’s Talk', '#contact']] },
+            ].map((col) => (
+              <div key={col.title} className="lg:col-span-2">
+                <h4 className="text-sm font-black text-white uppercase tracking-wide mb-2">
+                  {col.title}
+                </h4>
+                <ul className="space-y-1 text-[13px] font-medium text-gray-300">
+                  {col.links.map(([label, href]) => (
+                    <li key={label}>
+                      <a href={href} className="hover:text-[#FF1493] transition-colors">{label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
 
-            <div>
-              <h4 className="text-xs font-black text-white uppercase tracking-wider mb-4">
-                ADVERTISERS
-              </h4>
-              <ul className="space-y-2 text-xs font-semibold">
-                <li><a href="#advertisers" className="hover:text-white transition-colors">Overview</a></li>
-                <li><a href="#advertisers" className="hover:text-white transition-colors">Solutions</a></li>
-                <li><a href="#cases" className="hover:text-white transition-colors">Case Studies</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact Us</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-black text-white uppercase tracking-wider mb-4">
-                PUBLISHERS
-              </h4>
-              <ul className="space-y-2 text-xs font-semibold">
-                <li><a href="#publishers" className="hover:text-white transition-colors">Overview</a></li>
-                <li><a href="#publishers" className="hover:text-white transition-colors">How It Works</a></li>
-                <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact Us</a></li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-xs font-black text-white uppercase tracking-wider mb-4">
-                LET'S TALK
-              </h4>
-              <ul className="space-y-2 text-xs font-semibold mb-4">
-                <li><a href="#contact" className="hover:text-white transition-colors">Support</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Events</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Partnerships</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Let's Talk</a></li>
-              </ul>
-              <div className="flex items-center gap-2">
-                {['in', 'tw', 'fb', 'yt'].map((platform, idx) => (
-                  <a
-                    key={idx}
-                    href="#contact"
-                    className="w-7 h-7 rounded-full bg-white/10 text-white text-[10px] font-black flex items-center justify-center hover:bg-[#FF1B7A] transition-colors uppercase"
-                  >
-                    {platform}
-                  </a>
-                ))}
+            <div className="lg:col-span-2">
+              <h4 className="text-sm font-black text-white mb-2 whitespace-nowrap">Follow Us</h4>
+              <div>
+                <SocialRow variant="light" size="w-7 h-7" />
               </div>
             </div>
 
           </div>
 
-          <div className="pt-8 border-t border-gray-900 flex flex-col sm:flex-row items-center justify-between text-xs font-semibold text-gray-500 gap-4">
-            <p>© 2026 Pocco Locco Media. All rights reserved.</p>
-            <div className="flex items-center gap-6">
-              <a href="#privacy" className="hover:text-gray-400">Privacy Policy</a>
-              <a href="#terms" className="hover:text-gray-400">Terms & Conditions</a>
-              <a href="#cookies" className="hover:text-gray-400">Cookie Policy</a>
+          <div className="pt-4 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between text-xs font-medium text-gray-300 gap-3">
+            <p>© {new Date().getFullYear()} Pocco Locco Media. All rights reserved.</p>
+            <div className="flex items-center gap-2">
+              <a href="#privacy" className="hover:text-white">Privacy Policy</a>
+              <span>|</span>
+              <a href="#terms" className="hover:text-white">Terms &amp; Conditions</a>
+              <span>|</span>
+              <a href="#cookies" className="hover:text-white">Cookie Policy</a>
             </div>
           </div>
 

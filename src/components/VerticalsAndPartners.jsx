@@ -1,26 +1,81 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, Star, Quote } from 'lucide-react';
-import { DoodleCurlyArrow, DoodleCrown } from './Doodles';
+import { ArrowRight, Star } from 'lucide-react';
+
+// Partner wordmarks drawn in type + small glyphs so the row stays crisp at any size
+function PartnerLogo({ name }) {
+  switch (name) {
+    case 'amazon':
+      return (
+        <span className="relative inline-block text-[26px] font-bold tracking-tight leading-none lowercase font-['Outfit',sans-serif]">
+          amazon
+          <svg viewBox="0 0 80 14" className="absolute left-1 -bottom-2.5 w-[78%] h-3" fill="none">
+            <path d="M2 3 Q 38 14, 70 4" stroke="#FF9900" strokeWidth="3" strokeLinecap="round" />
+            <path d="M64 2 L72 4 L68 10" stroke="#FF9900" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
+      );
+    case 'samsung':
+      return <span className="text-[22px] font-black tracking-[0.12em] leading-none">SAMSUNG</span>;
+    case 'expedia':
+      return (
+        <span className="inline-flex items-center gap-1.5 text-[24px] font-bold leading-none">
+          <span className="w-7 h-7 rounded-md bg-[#FFC72C] flex items-center justify-center">
+            <ArrowRight className="w-4 h-4 -rotate-45 stroke-[3] text-black" />
+          </span>
+          Expedia
+        </span>
+      );
+    case 'spotify':
+      return (
+        <span className="inline-flex items-center gap-1.5 text-[24px] font-black leading-none tracking-tight">
+          <svg viewBox="0 0 24 24" className="w-7 h-7">
+            <circle cx="12" cy="12" r="12" fill="#000" />
+            <path d="M6 9.2c4-1.2 8.5-.9 12 1.1M6.6 12.4c3.3-.9 7-.6 9.8 1M7.3 15.4c2.6-.7 5.4-.4 7.6.8" stroke="#fff" strokeWidth="1.7" strokeLinecap="round" fill="none" />
+          </svg>
+          Spotify
+        </span>
+      );
+    case 'etoro':
+      return <span className="text-[26px] font-semibold italic leading-none tracking-tight">ᵉtoro</span>;
+    case 'uber':
+      return <span className="text-[28px] font-medium leading-none tracking-tight">Uber</span>;
+    case 'adidas':
+      return (
+        <span className="inline-flex flex-col items-center leading-none">
+          <svg viewBox="0 0 40 26" className="w-10 h-6" fill="#000">
+            <path d="M2 24 L8 20 L12 26 L4 26 Z" />
+            <path d="M11 24 L20 12 L26 26 L15 26 Z" transform="translate(-2 0)" />
+            <path d="M22 26 L30 4 L38 26 Z" />
+          </svg>
+          <span className="text-[17px] font-black lowercase tracking-tight -mt-0.5">adidas</span>
+        </span>
+      );
+    case 'cocacola':
+      return <span className="font-['Lobster',cursive] text-[30px] leading-none text-[#E4002B] -rotate-3 inline-block">Coca-Cola</span>;
+    default:
+      return null;
+  }
+}
 
 export default function VerticalsAndPartners() {
   const verticals = [
     {
       category: 'NUTRA',
-      categoryColor: 'bg-[#FF1B7A] text-white',
+      categoryColor: 'bg-[#FF1493] text-white',
       title: 'Boosting Conversions with Smart Targeting',
       stat: '+320%',
       statLabel: 'ROI Increase',
-      statColor: 'text-[#FF1B7A]',
+      statColor: 'text-[#FF1493]',
       img: '/assets/vertical-nutra.png',
     },
     {
       category: 'TRAVEL',
-      categoryColor: 'bg-[#00B4D8] text-white',
+      categoryColor: 'bg-[#0099FF] text-white',
       title: 'Scaling Global Reach for a Leading Travel Brand',
       stat: '1.5M+',
       statLabel: 'Leads Generated',
-      statColor: 'text-[#00B4D8]',
+      statColor: 'text-[#0099FF]',
       img: '/assets/vertical-travel.png',
     },
     {
@@ -29,16 +84,16 @@ export default function VerticalsAndPartners() {
       title: 'High-Performing User Acquisition',
       stat: '2.8X',
       statLabel: 'Conversion Rate',
-      statColor: 'text-amber-500',
+      statColor: 'text-[#FFC800]',
       img: '/assets/vertical-gaming.png',
     },
     {
       category: 'FINANCE',
-      categoryColor: 'bg-[#FF1B7A] text-white',
+      categoryColor: 'bg-[#FF1493] text-white',
       title: 'Driving Quality Leads in Competitive Markets',
       stat: '45%',
       statLabel: 'Lower CPA',
-      statColor: 'text-[#FF1B7A]',
+      statColor: 'text-[#FF1493]',
       img: '/assets/vertical-finance.png',
     },
   ];
@@ -67,177 +122,170 @@ export default function VerticalsAndPartners() {
     },
   ];
 
-  const partners = [
-    { name: 'amazon', font: 'font-bold tracking-tight lowercase' },
-    { name: 'SAMSUNS', font: 'font-black tracking-widest' },
-    { name: 'Expedia', font: 'font-black' },
-    { name: 'Spotify', font: 'font-black' },
-    { name: 'eToro', font: 'font-black italic' },
-    { name: 'Uber', font: 'font-black' },
-    { name: 'adidas', font: 'font-black lowercase' },
-    { name: 'Coca-Cola', font: 'font-serif italic font-black' },
-  ];
+  const partners = ['amazon', 'samsung', 'expedia', 'spotify', 'etoro', 'uber', 'adidas', 'cocacola'];
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section id="cases" className="pt-6 sm:pt-8 pb-10 sm:pb-12 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Verticals Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-5 gap-3">
           <div>
-            <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
-              VERTICALS <span className="text-[#FF1B7A]">CAMPAIGNS</span>
+            <h2 className="font-display text-4xl sm:text-5xl text-black uppercase leading-none">
+              VERTICALS <span className="text-[#FF1493]">CAMPAIGNS</span>
             </h2>
-            <p className="text-xs sm:text-sm text-gray-500 font-bold uppercase tracking-wider mt-2">
+            <p className="text-sm sm:text-base text-gray-800 font-semibold mt-2">
               A selection of successful campaigns across various verticals.
             </p>
           </div>
           <a
             href="#contact"
-            className="group inline-flex items-center gap-1.5 text-xs font-black text-black hover:text-[#FF1B7A] uppercase tracking-wider transition-colors"
+            className="group inline-flex items-center gap-1.5 text-sm font-black text-black hover:text-[#FF1493] uppercase tracking-wide transition-colors"
           >
             <span>VIEW ALL CASE STUDIES</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 stroke-[2.5] transition-transform group-hover:translate-x-1" />
           </a>
         </div>
 
         {/* 4 Verticals Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-28">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-10 sm:mb-12">
           {verticals.map((v, idx) => (
             <motion.div
               key={v.category}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="group bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              whileHover={{ y: -6 }}
+              className="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-[0_4px_18px_rgba(0,0,0,0.06)] hover:shadow-xl transition-shadow duration-300 flex flex-col"
             >
-              {/* Thumbnail Container with Category Pill */}
-              <div className="relative h-44 overflow-hidden bg-black">
-                <img
-                  src={v.img}
-                  alt={v.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+              {/* Thumbnail with category pill straddling the bottom edge */}
+              <div className="relative">
+                {/* Source crops carry a baked-in pill at the bottom, so only the top of the image is shown */}
+                <div className="aspect-[2.6/1] overflow-hidden bg-black">
+                  <img
+                    src={v.img}
+                    alt={v.title}
+                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
                 <span
-                  className={`absolute bottom-3 left-3 text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-md ${v.categoryColor}`}
+                  className={`absolute -bottom-3.5 left-4 min-w-[104px] text-center text-xs font-black uppercase tracking-wide px-4 py-1.5 rounded-md shadow-md ${v.categoryColor}`}
                 >
                   {v.category}
                 </span>
               </div>
 
               {/* Card Body */}
-              <div className="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-sm font-black text-gray-900 leading-snug mb-4 group-hover:text-[#FF1B7A] transition-colors">
-                    {v.title}
-                  </h3>
-                  <div className="mb-4">
-                    <span className={`text-2xl font-black ${v.statColor} block`}>
-                      {v.stat}
-                    </span>
-                    <span className="text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                      {v.statLabel}
-                    </span>
-                  </div>
-                </div>
+              <div className="px-4 sm:px-5 pt-7 pb-4 flex-1 flex flex-col">
+                <h3 className="text-[15px] font-extrabold text-gray-900 leading-snug mb-2 group-hover:text-[#FF1493] transition-colors">
+                  {v.title}
+                </h3>
+                <span className={`text-[34px] font-black leading-none tracking-tight ${v.statColor}`}>
+                  {v.stat}
+                </span>
+                <span className="text-sm font-semibold text-gray-800 mt-1">
+                  {v.statLabel}
+                </span>
 
-                <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-black text-gray-900 group-hover:text-[#FF1B7A]">
+                <a
+                  href="#contact"
+                  className="mt-4 self-center inline-flex items-center gap-1.5 text-sm font-black text-gray-900 uppercase group-hover:text-[#FF1493] transition-colors"
+                >
                   <span>VIEW CASE</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </div>
+                  <ArrowRight className="w-4 h-4 stroke-[2.5] transition-transform group-hover:translate-x-1" />
+                </a>
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* WHAT OUR PARTNERS SAY */}
-        <div className="relative mb-24">
-          
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-12">
-            <h2 className="text-3xl sm:text-5xl font-black text-black tracking-tight uppercase">
-              WHAT OUR PARTNERS <span className="text-[#FF1B7A]">SAY</span>
-            </h2>
+        <div id="testimonials" className="relative mb-8 sm:mb-10">
+          <h2 className="font-display text-4xl sm:text-5xl text-black uppercase leading-none mb-5">
+            WHAT OUR PARTNERS <span className="text-[#FF1493]">SAY</span>
+          </h2>
 
-            {/* Scribble "REAL PEOPLE. REAL RESULTS." callout */}
-            <div className="hidden lg:flex items-center gap-3">
-              <DoodleCurlyArrow className="w-14 h-14 text-black rotate-[-20deg]" />
-              <div className="text-right">
-                <span className="text-xs font-black tracking-widest uppercase block text-black">
-                  REAL PEOPLE.
-                </span>
-                <span className="text-xs font-black tracking-widest uppercase block text-[#FF1B7A]">
-                  REAL RESULTS.
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr_1fr_150px] gap-4 sm:gap-5 items-stretch">
             {testimonials.map((t, idx) => (
               <motion.div
                 key={t.name}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.12 }}
-                whileHover={{ y: -6, scale: 1.02 }}
-                className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between"
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="bg-white px-5 pt-4 pb-5 rounded-xl border border-gray-200 shadow-[0_4px_18px_rgba(0,0,0,0.05)] hover:shadow-lg transition-shadow flex flex-col justify-between"
               >
-                <div>
-                  <Quote className="w-7 h-7 text-[#FF1B7A] mb-3 fill-[#FF1B7A]/10" />
-                  <p className="text-xs sm:text-sm text-gray-700 font-medium leading-relaxed mb-6">
-                    "{t.quote}"
+                <div className="flex gap-2.5">
+                  <span className="font-display text-4xl leading-none text-[#FF1493] -mt-0.5">“</span>
+                  <p className="text-sm text-gray-800 font-medium leading-relaxed pt-1.5">
+                    {t.quote}
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={t.avatar}
-                      alt={t.name}
-                      className="w-10 h-10 rounded-full object-cover border border-gray-200 shadow-sm"
-                    />
-                    <div>
-                      <h4 className="text-xs font-black text-gray-900">{t.name}</h4>
-                      <p className="text-[10px] font-bold text-gray-500">{t.role}</p>
+                <div className="flex items-center gap-3 mt-4 pl-6">
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    className="w-11 h-11 rounded-full object-cover border border-gray-200"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <h4 className="text-sm font-black text-gray-900">{t.name}</h4>
+                      <div className="flex items-center gap-0.5">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 text-[#FFC800] fill-[#FFC800]" />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-
-                  {/* 5 Gold Stars */}
-                  <div className="flex items-center gap-0.5 text-amber-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
-                    ))}
+                    <p className="text-xs font-semibold text-gray-600">{t.role}</p>
                   </div>
                 </div>
               </motion.div>
             ))}
-          </div>
 
+            {/* Hand-drawn "REAL PEOPLE. REAL RESULTS." callout */}
+            <div className="hidden lg:flex relative items-center justify-center pointer-events-none select-none">
+              <svg viewBox="0 0 120 60" fill="none" className="absolute -top-14 -left-6 w-32 h-16 text-black">
+                <path d="M112 30 C 100 4, 70 0, 62 18 C 56 32, 74 34, 72 20 C 70 8, 40 6, 12 40" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+                <path d="M8 28 L11 42 L24 38" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <div className="font-marker text-[26px] leading-[1.05] text-black -rotate-12 text-center">
+                REAL<br />PEOPLE.<br />REAL<br />RESULTS.
+                <svg viewBox="0 0 120 14" className="w-28 h-3.5 mx-auto -mt-0.5" fill="none">
+                  <path d="M4 10 Q 60 2, 116 6" stroke="#FF1493" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* OUR PARTNERS Infinite Marquee */}
-        <div className="pt-8 border-t border-gray-100">
-          <div className="flex items-center gap-3 mb-6">
-            <h3 className="text-sm font-black text-gray-900 tracking-wider uppercase">
-              OUR PARTNERS
-            </h3>
-            <DoodleCrown className="w-6 h-6 text-black" />
+        {/* OUR PARTNERS logo row */}
+        <div id="partners">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <h2 className="font-display text-4xl sm:text-5xl text-black uppercase leading-none">
+                OUR PARTNERS
+              </h2>
+              <svg viewBox="0 0 90 40" fill="none" className="hidden sm:block w-20 h-9 mt-3 text-black">
+                <path d="M4 10 C 30 0, 56 4, 80 26" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+                <path d="M68 26 L82 28 L80 14" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+            <img src="/assets/crown-white.svg" alt="" className="w-11 h-11 sm:w-12 sm:h-12 object-contain rotate-6" />
           </div>
 
-          <div className="relative overflow-hidden py-4 bg-gray-50/70 rounded-2xl border border-gray-100">
-            <div className="animate-marquee flex items-center gap-16 px-4">
-              {[...partners, ...partners].map((p, i) => (
-                <span
-                  key={i}
-                  className={`text-xl sm:text-2xl text-gray-700 hover:text-black transition-colors select-none ${p.font}`}
-                >
-                  {p.name}
-                </span>
-              ))}
-            </div>
+          <div className="flex flex-wrap items-center justify-center lg:justify-between gap-x-10 gap-y-6 text-black">
+            {partners.map((p) => (
+              <motion.div
+                key={p}
+                whileHover={{ scale: 1.08 }}
+                className="select-none cursor-default"
+              >
+                <PartnerLogo name={p} />
+              </motion.div>
+            ))}
           </div>
         </div>
 

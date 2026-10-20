@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'motion/react';
-import { ArrowRight, Play, RotateCcw } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function Hero() {
@@ -70,7 +70,7 @@ export default function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-[680px] lg:min-h-[780px] lg:max-h-[920px] lg:h-[92vh] pt-28 sm:pt-32 pb-12 flex items-center overflow-hidden bg-white select-none"
+      className="relative min-h-[620px] lg:min-h-[700px] pt-28 sm:pt-32 pb-6 flex items-center overflow-hidden bg-white select-none"
     >
       {/* Top Black Paint Splatter / Drip along border matching client mockup */}
       <div className="absolute top-0 left-0 right-0 h-10 pointer-events-none opacity-90 z-10 overflow-hidden flex">
@@ -151,18 +151,6 @@ export default function Hero() {
                   <ArrowRight className="w-4 h-4 stroke-[2.5]" />
                 </span>
               </motion.a>
-
-              {/* Replay Crash & Splash interactive button */}
-              <motion.button
-                onClick={triggerReplay}
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.92 }}
-                className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider text-gray-500 hover:text-[#FF1B7A] bg-gray-50 hover:bg-pink-50 px-3.5 py-2 rounded-full border border-gray-200 transition-all ml-1 shadow-sm"
-                title="Watch cart crash & paint balloon pop again"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Crash & Splash</span>
-              </motion.button>
             </motion.div>
 
           </div>

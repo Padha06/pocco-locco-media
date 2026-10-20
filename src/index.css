@@ -15,6 +15,42 @@
   }
 }
 
+/* Condensed display font used for section headings in the client design */
+.font-display {
+  font-family: 'Anton', 'Impact', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Hand-drawn marker font for the doodle callouts */
+.font-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+/* Sky backdrop shared by the contact + CTA sections */
+.bg-sky {
+  background-color: #97defd;
+  background-image:
+    radial-gradient(ellipse 22% 18% at 8% 100%, rgba(255, 255, 255, 0.95), transparent 70%),
+    radial-gradient(ellipse 18% 14% at 30% 104%, rgba(255, 255, 255, 0.9), transparent 70%),
+    radial-gradient(ellipse 20% 16% at 62% 102%, rgba(255, 255, 255, 0.85), transparent 70%),
+    radial-gradient(ellipse 16% 10% at 46% 8%, rgba(255, 255, 255, 0.55), transparent 70%),
+    radial-gradient(ellipse 14% 10% at 88% 12%, rgba(255, 255, 255, 0.5), transparent 70%),
+    linear-gradient(180deg, #92dcfd 0%, #a6e3fd 55%, #bdebfd 100%);
+}
+
+/* Feathered edges so cropped mascots melt into the sky backdrop */
+.mask-feather {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent, #000 10%, #000 90%, transparent),
+    linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  mask-composite: intersect;
+}
+
 /* Custom graffiti / bold text shadows and glows */
 .text-shadow-neo {
   text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.9);

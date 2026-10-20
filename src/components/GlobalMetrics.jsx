@@ -20,15 +20,15 @@ export default function GlobalMetrics() {
   ];
 
   return (
-    <section ref={containerRef} className="pt-2 sm:pt-4 pb-14 sm:pb-16 bg-white relative overflow-hidden select-none">
+    <section ref={containerRef} className="pt-6 sm:pt-8 pb-6 sm:pb-8 bg-white relative overflow-hidden select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top Header Row with Rotating Globe Video & Global Opportunities Tag */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-8 sm:mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-2">
           
           {/* Left: Heading & Description */}
           <div className="lg:col-span-6">
-            <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-black text-black tracking-tight uppercase leading-[1.08] mb-4 sm:mb-5">
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-[64px] text-black uppercase leading-[1.05] mb-4">
               TRUSTED TO <br />
               PERFORM <span className="text-[#FF1493]">GLOBALLY</span>
             </h2>
@@ -46,7 +46,7 @@ export default function GlobalMetrics() {
               className="relative flex items-center"
             >
               {/* Rotating Globe Video (Seamless Pure White Blend with NO gray box) */}
-              <div className="relative w-[240px] sm:w-[290px] lg:w-[320px] aspect-square shrink-0 flex items-center justify-center">
+              <div className="relative w-[220px] sm:w-[260px] lg:w-[290px] aspect-square shrink-0 flex items-center justify-center">
                 <video
                   src="/assets/rotating-globe.mp4"
                   poster="/assets/globe-poster.webp"
@@ -90,7 +90,7 @@ export default function GlobalMetrics() {
         </div>
 
         {/* 5 Big Metrics Counter Bar (No divider line, tight spacing matching client design) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 pt-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
           {metrics.map((m, idx) => (
             <motion.div
               key={m.label}
