@@ -23,7 +23,7 @@ function PopMascot({ src, alt, glow, shadow, gesture, flashClass }) {
       whileInView="shown"
       viewport={{ once: true, amount: 0.5 }}
       onHoverStart={() => setPeaceKey((k) => k + 1)}
-      className="relative cursor-pointer max-w-[96px] sm:max-w-[200px] w-full"
+      className="relative cursor-pointer w-fit mx-auto"
     >
       {/* Glow + splash ring that opens up first, like a portal in the background */}
       <motion.div
@@ -72,7 +72,8 @@ function PopMascot({ src, alt, glow, shadow, gesture, flashClass }) {
               src={src}
               alt={alt}
               style={{ filter: `drop-shadow(0 12px 24px ${shadow})` }}
-              className="w-full h-auto object-contain"
+              // Same height box for both mascots (the pink artwork is taller), so the cards line up
+              className="block w-auto h-auto max-h-[96px] sm:max-h-[200px] lg:max-h-[230px] object-contain"
             />
 
             {/* Comic flash lines around the raised fingers, timed with the gesture */}
@@ -306,7 +307,7 @@ export default function HowWeMakeItLoco() {
           >
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 items-center">
               {/* Left Column: Mascot Pink Rock Hand */}
-              <div className="sm:col-span-5 flex justify-center">
+              <div className="sm:col-span-5 h-[104px] sm:h-[210px] lg:h-[240px] flex items-center justify-center">
                 <PopMascot
                   src="/assets/mascot-pink-hand.webp"
                   alt="Pocco Locco Advertisers Mascot"
@@ -416,7 +417,7 @@ export default function HowWeMakeItLoco() {
               </div>
 
               {/* Right Column: Mascot Blue Peace Hand */}
-              <div className="sm:col-span-5 flex justify-center order-1 sm:order-2">
+              <div className="sm:col-span-5 h-[104px] sm:h-[210px] lg:h-[240px] flex items-center justify-center order-1 sm:order-2">
                 <PopMascot
                   src="/assets/mascot-blue-hand.webp"
                   alt="Pocco Locco Publishers Mascot"

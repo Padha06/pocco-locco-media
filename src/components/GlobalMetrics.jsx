@@ -1,6 +1,111 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { CraftScatter } from './CraftDecor';
+
+// The globe video has an off-white background. CSS blend modes can't hide it on iOS Safari
+// (it ignores mix-blend-mode on <video>), so each frame is drawn to a canvas and the white is
+// converted to real transparency ("colour to alpha"). Works the same in every browser.
+const WHITE_POINT = 238; // the video's background sits around rgb(236-247)
+const CANVAS_W = 640;
+const CANVAS_H = 360;
+
+function keyOutWhite(ctx) {
+  const frame = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H);
+  const d = frame.data;
+  const lift = 255 / WHITE_POINT;
+  for (let i = 0; i < d.length; i += 4) {
+    const r = Math.min(255, d[i] * lift);
+    const g = Math.min(255, d[i + 1] * lift);
+    const b = Math.min(255, d[i + 2] * lift);
+    const m = Math.min(r, g, b);
+    const a = 255 - m;
+    if (a < 4) {
+      d[i + 3] = 0;
+      continue;
+    }
+    // Un-mix the white so the colour stays true once it is see-through
+    const k = 255 / a;
+    d[i] = (r - m) * k;
+    d[i + 1] = (g - m) * k;
+    d[i + 2] = (b - m) * k;
+    d[i + 3] = a;
+  }
+  ctx.putImageData(frame, 0, 0);
+}
+
+function KeyedGlobe() {
+  const canvasRef = useRef(null);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const video = videoRef.current;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+    let raf = 0;
+    let lastTime = -1;
+    let onScreen = true;
+
+    const paint = (source) => {
+      ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+      ctx.drawImage(source, 0, 0, CANVAS_W, CANVAS_H);
+      keyOutWhite(ctx);
+    };
+
+    // Still frame first, so there is a clean globe even if autoplay is blocked (e.g. iOS Low Power Mode)
+    const poster = new Image();
+    poster.onload = () => {
+      if (lastTime < 0) paint(poster);
+    };
+    poster.src = '/assets/globe-poster.webp';
+
+    const tick = () => {
+      if (onScreen && video.readyState >= 2 && video.currentTime !== lastTime) {
+        lastTime = video.currentTime;
+        paint(video);
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    // Only decode and key frames while the globe is on screen
+    const io = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting;
+      if (onScreen) video.play().catch(() => {});
+      else video.pause();
+    });
+    io.observe(canvas);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      io.disconnect();
+    };
+  }, []);
+
+  return (
+    <>
+      {/* Source video: kept in the layout (iOS only autoplays visible videos) but fully transparent */}
+      <video
+        ref={videoRef}
+        src="/assets/rotating-globe.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-contain opacity-[0.01] pointer-events-none"
+      />
+      <canvas
+        ref={canvasRef}
+        width={CANVAS_W}
+        height={CANVAS_H}
+        role="img"
+        aria-label="Rotating globe"
+        className="relative w-full h-full object-contain pointer-events-none select-none"
+      />
+    </>
+  );
+}
 
 export default function GlobalMetrics() {
   const containerRef = useRef(null);
@@ -33,8 +138,7 @@ export default function GlobalMetrics() {
           { shape: 'Zigzag', className: 'bottom-2 left-[42%] w-24', props: { color: '#FFD600' } },
         ]}
       />
-      {/* No z-index here: a stacking context would stop the globe's multiply blend reaching the paper */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Top Header Row with Rotating Globe Video & Global Opportunities Tag */}
         <div className="grid grid-cols-12 gap-2 lg:gap-8 items-center mb-2">
@@ -56,25 +160,11 @@ export default function GlobalMetrics() {
             
             <motion.div
               style={{ scale: globeScale }}
-              // The scale transform isolates its children, so the multiply blend that hides
-              // the video's white box has to live on this wrapper to reach the paper behind it
-              className="relative flex items-center mix-blend-multiply"
+              className="relative flex items-center"
             >
               {/* Rotating Globe Video (Seamless Pure White Blend with NO gray box) */}
               <div className="relative w-[96px] sm:w-[260px] lg:w-[290px] aspect-square shrink-0 flex items-center justify-center">
-                <video
-                  src="/assets/rotating-globe.mp4"
-                  poster="/assets/globe-poster.webp"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{
-                    filter: 'contrast(1.14) brightness(1.08)',
-                    mixBlendMode: 'multiply',
-                  }}
-                  className="w-full h-full object-contain pointer-events-none select-none"
-                />
+                <KeyedGlobe />
               </div>
 
               {/* Tilted Doodle Tag: GLOBAL OPPORTUNITIES (Positioned directly beside globe splatter) */}
