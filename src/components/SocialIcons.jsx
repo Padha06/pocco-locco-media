@@ -45,7 +45,7 @@ export function SocialRow({ variant = 'dark', size = 'w-8 h-8' }) {
       ? 'bg-black text-white hover:bg-[#FF1493]'
       : 'bg-white text-black hover:bg-[#FF1493] hover:text-white';
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-1 sm:gap-2">
       {SOCIAL_NETWORKS.map((name) => (
         <a
           key={name}

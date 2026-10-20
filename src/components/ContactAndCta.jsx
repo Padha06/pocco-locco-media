@@ -6,7 +6,7 @@ import { SocialRow } from './SocialIcons';
 import confetti from 'canvas-confetti';
 
 const inputClass =
-  'w-full bg-white border border-white rounded-md px-2.5 sm:px-3.5 py-1.5 sm:py-2.5 text-[11px] sm:text-sm font-medium text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF1493] shadow-sm';
+  'w-full bg-white border border-white rounded sm:rounded-md px-2 sm:px-3.5 py-1 sm:py-2.5 text-[10px] sm:text-sm font-medium text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#FF1493] shadow-sm';
 
 export default function ContactAndCta() {
   const [formData, setFormData] = useState({
@@ -59,30 +59,30 @@ export default function ContactAndCta() {
         </div>
 
         {/* CONTACT US SECTION */}
-        <section id="contact" className="relative pt-6 sm:pt-10 pb-2 sm:pb-4">
+        <section id="contact" className="relative pt-4 sm:pt-10 pb-1 sm:pb-4">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-12 gap-x-3 gap-y-2 lg:gap-10 items-start relative z-10">
+            <div className="grid grid-cols-12 gap-x-3 gap-y-1 lg:gap-10 items-start relative z-10">
 
               {/* Left Column: Form */}
-              <div className="col-span-7 row-span-2 lg:row-span-1 lg:col-span-5">
-                <h2 className="font-display text-2xl sm:text-5xl text-black uppercase leading-none mb-3 sm:mb-5">
+              <div className="order-1 col-span-7 row-span-2 lg:row-span-1 lg:col-span-5">
+                <h2 className="font-display text-2xl sm:text-5xl text-black uppercase leading-none mb-2 sm:mb-5">
                   CONTACT <span className="text-[#FF1493]">US</span>
                 </h2>
 
-                <form onSubmit={handleSubmit} className="space-y-1.5 sm:space-y-2.5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2.5">
+                <form onSubmit={handleSubmit} className="space-y-1 sm:space-y-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2.5">
                     <input type="text" required placeholder="Your Name *" value={formData.name} onChange={update('name')} className={inputClass} />
                     <input type="email" required placeholder="Your Email Address *" value={formData.email} onChange={update('email')} className={inputClass} />
                   </div>
                   <input type="tel" placeholder="Your Phone Number" value={formData.phone} onChange={update('phone')} className={inputClass} />
                   <input type="text" required placeholder="What's the Subject?" value={formData.subject} onChange={update('subject')} className={inputClass} />
-                  <textarea rows="2" required placeholder="Your Message..." value={formData.message} onChange={update('message')} className={`${inputClass} resize-none`} />
+                  <textarea rows="2" required placeholder="Your Message..." value={formData.message} onChange={update('message')} className={`${inputClass} resize-none h-10 sm:h-auto`} />
 
                   <motion.button
                     type="submit"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="group !mt-3 sm:!mt-5 inline-flex items-center gap-2 sm:gap-4 bg-[#FFD600] text-black text-[10px] sm:text-sm font-black tracking-wide uppercase pl-3.5 sm:pl-7 pr-1 sm:pr-1.5 py-1 sm:py-1.5 rounded-full hover:bg-[#ffcc00] transition-all shadow-md"
+                    className="group !mt-2 sm:!mt-5 inline-flex items-center gap-2 sm:gap-4 bg-[#FFD600] text-black text-[10px] sm:text-sm font-black tracking-wide uppercase pl-3.5 sm:pl-7 pr-1 sm:pr-1.5 py-1 sm:py-1.5 rounded-full hover:bg-[#ffcc00] transition-all shadow-md"
                   >
                     <span>{submitted ? 'MESSAGE SENT!' : 'SEND MESSAGE'}</span>
                     <span className="w-6 h-6 sm:w-9 sm:h-9 rounded-full bg-black flex items-center justify-center text-white transition-transform group-hover:translate-x-1">
@@ -93,11 +93,11 @@ export default function ContactAndCta() {
               </div>
 
               {/* Middle Column: Get In Touch, Newsletter, Social */}
-              <div className="col-span-5 lg:col-span-4 lg:pl-2">
-                <h3 className="font-display text-lg sm:text-4xl text-black uppercase leading-none mb-2 sm:mb-4">
+              <div className="order-3 lg:order-2 col-span-5 lg:col-span-4 lg:pl-2">
+                <h3 className="font-display text-base sm:text-4xl text-black uppercase leading-none mb-1.5 sm:mb-4">
                   GET IN TOUCH
                 </h3>
-                <div className="space-y-1.5 sm:space-y-3 text-[9px] sm:text-sm font-semibold text-gray-900 mb-3 sm:mb-5">
+                <div className="space-y-1 sm:space-y-3 text-[9px] sm:text-sm font-semibold text-gray-900 mb-2 sm:mb-5">
                   <p className="flex items-start gap-1.5 sm:gap-3">
                     <MapPin className="w-3 h-3 sm:w-5 sm:h-5 text-black fill-black/10 shrink-0 mt-0.5" />
                     <span>
@@ -106,7 +106,7 @@ export default function ContactAndCta() {
                       The Netherlands
                     </span>
                   </p>
-                  <p className="flex items-center gap-1.5 sm:gap-3 break-all">
+                  <p className="flex items-center gap-1.5 sm:gap-3 text-[8px] sm:text-sm whitespace-nowrap">
                     <Mail className="w-3 h-3 sm:w-5 sm:h-5 text-black shrink-0" />
                     <a href="mailto:info@poccoloccomedia.com" className="hover:text-[#FF1493]">
                       info@poccoloccomedia.com
@@ -117,7 +117,7 @@ export default function ContactAndCta() {
                 <h4 className="font-display text-[11px] sm:text-2xl text-black uppercase leading-none mb-1.5 sm:mb-2.5">
                   SUBSCRIBE TO OUR NEWSLETTER
                 </h4>
-                <div className="flex gap-1 sm:gap-2 max-w-sm mb-3 sm:mb-5">
+                <div className="flex gap-1 sm:gap-2 max-w-sm mb-2 sm:mb-5">
                   <input
                     type="email"
                     placeholder="Your email address"
@@ -139,7 +139,7 @@ export default function ContactAndCta() {
                   </button>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-1.5 sm:gap-3">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-3">
                   <span className="font-display text-[11px] sm:text-2xl text-black uppercase leading-none">
                     FOLLOW US
                   </span>
@@ -148,12 +148,12 @@ export default function ContactAndCta() {
               </div>
 
               {/* Right Column: Let's Talk mascot */}
-              <div className="col-span-5 lg:col-span-3 flex justify-center lg:justify-end lg:-mr-6">
+              <div className="order-2 lg:order-3 col-span-5 lg:col-span-3 flex justify-center lg:justify-end lg:-mr-6">
                 <motion.img
                   src="/assets/contact-woman.png"
                   alt="Pocco Locco Let's Talk Mascot"
                   whileHover={{ scale: 1.04, rotate: -1 }}
-                  className="mask-feather w-full max-w-[150px] sm:max-w-[340px] lg:max-w-[380px] h-auto object-contain lg:-mt-4"
+                  className="mask-feather w-full max-w-[104px] sm:max-w-[340px] lg:max-w-[380px] h-auto object-contain lg:-mt-4"
                 />
               </div>
 
