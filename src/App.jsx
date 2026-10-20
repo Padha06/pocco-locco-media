@@ -9,7 +9,7 @@ import ContactAndCta from './components/ContactAndCta';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 selection:bg-[#FF1B7A] selection:text-white relative">
+    <div className="min-h-screen bg-paper text-gray-900 selection:bg-[#FF1B7A] selection:text-white relative">
       <Navbar />
       <main>
         <Hero />

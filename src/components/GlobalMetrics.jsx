@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import { CraftScatter } from './CraftDecor';
 
 export default function GlobalMetrics() {
   const containerRef = useRef(null);
@@ -20,8 +21,20 @@ export default function GlobalMetrics() {
   ];
 
   return (
-    <section ref={containerRef} className="pt-6 sm:pt-8 pb-6 sm:pb-8 bg-white relative overflow-hidden select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={containerRef} className="pt-6 sm:pt-8 pb-6 sm:pb-8 relative overflow-hidden select-none">
+      <CraftScatter
+        items={[
+          { shape: 'Splat', className: 'top-6 left-[1.5%] w-16', props: { color: '#FF1493' } },
+          { shape: 'Squiggle', className: 'bottom-16 left-[1.5%] w-20', props: { color: '#0099FF' } },
+          { shape: 'Dots', className: 'top-10 right-[2%] w-14' },
+          { shape: 'Sparkle', className: 'top-[48%] right-[2.5%] w-8' },
+          { shape: 'Spiral', className: 'top-10 left-[44%] w-12' },
+          { shape: 'Star', className: 'bottom-6 right-[5%] w-7', props: { fill: '#FF1493' } },
+          { shape: 'Zigzag', className: 'bottom-2 left-[42%] w-24', props: { color: '#FFD600' } },
+        ]}
+      />
+      {/* No z-index here: a stacking context would stop the globe's multiply blend reaching the paper */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
         {/* Top Header Row with Rotating Globe Video & Global Opportunities Tag */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center mb-2">
@@ -43,7 +56,9 @@ export default function GlobalMetrics() {
             
             <motion.div
               style={{ scale: globeScale }}
-              className="relative flex items-center"
+              // The scale transform isolates its children, so the multiply blend that hides
+              // the video's white box has to live on this wrapper to reach the paper behind it
+              className="relative flex items-center mix-blend-multiply"
             >
               {/* Rotating Globe Video (Seamless Pure White Blend with NO gray box) */}
               <div className="relative w-[220px] sm:w-[260px] lg:w-[290px] aspect-square shrink-0 flex items-center justify-center">

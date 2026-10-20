@@ -1,6 +1,9 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Star } from 'lucide-react';
+import { CraftScatter, Tape } from './CraftDecor';
+
+const TAPE_COLORS = ['#FFD600', '#FF8DC7', '#7CD3FF', '#FFD600'];
 
 // Partner wordmarks drawn in type + small glyphs so the row stays crisp at any size
 function PartnerLogo({ name }) {
@@ -67,7 +70,7 @@ export default function VerticalsAndPartners() {
       stat: '+320%',
       statLabel: 'ROI Increase',
       statColor: 'text-[#FF1493]',
-      img: '/assets/vertical-nutra.png',
+      img: '/assets/vertical-nutra.jpg',
     },
     {
       category: 'TRAVEL',
@@ -76,7 +79,7 @@ export default function VerticalsAndPartners() {
       stat: '1.5M+',
       statLabel: 'Leads Generated',
       statColor: 'text-[#0099FF]',
-      img: '/assets/vertical-travel.png',
+      img: '/assets/vertical-travel.jpg',
     },
     {
       category: 'GAMING',
@@ -85,7 +88,7 @@ export default function VerticalsAndPartners() {
       stat: '2.8X',
       statLabel: 'Conversion Rate',
       statColor: 'text-[#FFC800]',
-      img: '/assets/vertical-gaming.png',
+      img: '/assets/vertical-gaming.jpg',
     },
     {
       category: 'FINANCE',
@@ -94,7 +97,7 @@ export default function VerticalsAndPartners() {
       stat: '45%',
       statLabel: 'Lower CPA',
       statColor: 'text-[#FF1493]',
-      img: '/assets/vertical-finance.png',
+      img: '/assets/vertical-finance.jpg',
     },
   ];
 
@@ -125,8 +128,21 @@ export default function VerticalsAndPartners() {
   const partners = ['amazon', 'samsung', 'expedia', 'spotify', 'etoro', 'uber', 'adidas', 'cocacola'];
 
   return (
-    <section id="cases" className="pt-6 sm:pt-8 pb-10 sm:pb-12 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="cases" className="pt-6 sm:pt-8 pb-10 sm:pb-12 relative overflow-hidden">
+      <CraftScatter
+        items={[
+          { shape: 'Splat', className: 'top-4 right-[1%] w-16', props: { color: '#FFD600' } },
+          { shape: 'Spiral', className: 'top-[7%] left-[1.5%] w-12' },
+          { shape: 'Star', className: 'top-[28%] right-[2.5%] w-8', props: { fill: '#0099FF' } },
+          { shape: 'Zigzag', className: 'top-[44%] left-[1%] w-20', props: { color: '#FF1493' } },
+          { shape: 'Dots', className: 'top-[58%] right-[2%] w-14' },
+          { shape: 'Sparkle', className: 'top-[72%] left-[2.5%] w-9', props: { color: '#FF1493' } },
+          { shape: 'Splat', className: 'bottom-4 left-[1%] w-14', props: { color: '#FF1493' } },
+          { shape: 'Squiggle', className: 'bottom-12 right-[1.5%] w-20', props: { color: '#0099FF' } },
+          { shape: 'Scribble', className: 'top-[52%] left-[38%] w-44', still: true },
+        ]}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Verticals Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-5 gap-3">
@@ -157,16 +173,19 @@ export default function VerticalsAndPartners() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
               whileHover={{ y: -6 }}
-              className="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-[0_4px_18px_rgba(0,0,0,0.06)] hover:shadow-xl transition-shadow duration-300 flex flex-col"
+              className="group relative bg-white rounded-xl border border-gray-200 shadow-[0_4px_18px_rgba(0,0,0,0.06)] hover:shadow-xl transition-shadow duration-300 flex flex-col"
             >
+              <Tape
+                color={TAPE_COLORS[idx]}
+                className={`absolute -top-3 left-1/2 -translate-x-1/2 w-16 z-10 ${idx % 2 ? 'rotate-3' : '-rotate-3'}`}
+              />
               {/* Thumbnail with category pill straddling the bottom edge */}
               <div className="relative">
-                {/* Source crops carry a baked-in pill at the bottom, so only the top of the image is shown */}
-                <div className="aspect-[2.6/1] overflow-hidden bg-black">
+                <div className="aspect-[2.3/1] overflow-hidden bg-black rounded-t-xl">
                   <img
                     src={v.img}
                     alt={v.title}
-                    className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
                 <span
@@ -215,8 +234,12 @@ export default function VerticalsAndPartners() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-white px-5 pt-4 pb-5 rounded-xl border border-gray-200 shadow-[0_4px_18px_rgba(0,0,0,0.05)] hover:shadow-lg transition-shadow flex flex-col justify-between"
+                className="relative bg-white px-5 pt-4 pb-5 rounded-xl border border-gray-200 shadow-[0_4px_18px_rgba(0,0,0,0.05)] hover:shadow-lg transition-shadow flex flex-col justify-between"
               >
+                <Tape
+                  color={TAPE_COLORS[(idx + 1) % 4]}
+                  className={`absolute -top-3 right-6 w-14 ${idx % 2 ? '-rotate-6' : 'rotate-6'}`}
+                />
                 <div className="flex gap-2.5">
                   <span className="font-display text-4xl leading-none text-[#FF1493] -mt-0.5">“</span>
                   <p className="text-sm text-gray-800 font-medium leading-relaxed pt-1.5">

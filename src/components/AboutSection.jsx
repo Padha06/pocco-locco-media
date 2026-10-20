@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import { CraftScatter } from './CraftDecor';
 import confetti from 'canvas-confetti';
 
 export default function AboutSection() {
@@ -42,8 +43,19 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" ref={containerRef} className="pt-6 sm:pt-8 pb-8 sm:pb-10 bg-white relative overflow-hidden select-none">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" ref={containerRef} className="pt-6 sm:pt-8 pb-8 sm:pb-10 relative overflow-hidden select-none">
+      <CraftScatter
+        items={[
+          { shape: 'Splat', className: 'top-8 right-[1.5%] w-16', props: { color: '#0099FF' } },
+          { shape: 'Squiggle', className: 'top-[26%] left-[1%] w-20', props: { color: '#FF1493' } },
+          { shape: 'Sparkle', className: 'top-[52%] right-[3%] w-9' },
+          { shape: 'Dots', className: 'top-[60%] left-[2%] w-14' },
+          { shape: 'Crown', className: 'bottom-10 right-[2.5%] w-10', props: { fill: '#FFD600' } },
+          { shape: 'Star', className: 'bottom-6 left-[2.5%] w-8', props: { fill: '#0099FF' } },
+          { shape: 'Scribble', className: 'bottom-2 left-[36%] w-44', still: true },
+        ]}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* =========================================================================
             TOP BLOCK: Character with Yellow Backdrop + Copy + "MORE THAN MARKETING"

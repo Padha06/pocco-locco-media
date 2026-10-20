@@ -174,7 +174,7 @@ export default function HowWeMakeItLoco() {
   };
 
   return (
-    <section id="how-it-works" className="relative w-full bg-white select-none">
+    <section id="how-it-works" className="relative w-full select-none">
       
       {/* 1. BLACK BANNER FOR 5 STEPS WITH EXACT CLIENT BACKGROUND (NOT OVER-ZOOMED) */}
       <div
