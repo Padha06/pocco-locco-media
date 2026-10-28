@@ -118,11 +118,11 @@ export default function GlobalMetrics() {
   const globeScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1.02, 0.98]);
 
   const metrics = [
-    { value: '250+', label: 'ADVERTISERS', color: 'text-[#00C2FF]' },
-    { value: '10K+', label: 'PUBLISHERS', color: 'text-[#7C3AED]' },
-    { value: '12.5M+', label: 'LEADS DELIVERED', color: 'text-[#FF1493]' },
-    { value: '120+', label: 'COUNTRIES', color: 'text-[#0070F3]' },
-    { value: '99.9%', label: 'UPTIME', color: 'text-[#7C3AED]' },
+    { value: '150+', label: 'ADVERTISERS', color: 'text-[#00C2FF]' },
+    { value: '5K+', label: 'PUBLISHERS', color: 'text-[#7C3AED]' },
+    { value: '125K+', label: 'LEADS DELIVERED', color: 'text-[#FF1493]' },
+    { value: '15+', label: 'COUNTRIES', color: 'text-[#0070F3]' },
+    { value: 'Weekly', label: 'PUBLISHER PAYOUTS', color: 'text-[#7C3AED]' },
   ];
 
   return (
@@ -146,12 +146,12 @@ export default function GlobalMetrics() {
           {/* Left: Heading & Description */}
           <div className="col-span-7 lg:col-span-6">
             <h2 className="font-display text-[26px] sm:text-5xl lg:text-[64px] text-black uppercase leading-[1.05] mb-2 sm:mb-4">
-              TRUSTED TO <br />
-              PERFORM <span className="text-[#FF1493]">GLOBALLY</span>
+              RESULTS THAT <br />
+              CROSS <span className="text-[#FF1493]">BORDERS</span>
             </h2>
             <p className="text-gray-700 text-[10px] sm:text-base font-semibold max-w-lg leading-snug sm:leading-relaxed">
-              We work with leading brands across multiple industries and geographies,
-              delivering measurable results through innovative performance solutions.
+              From Nutra to Finance, we run campaigns for brands in 15+ countries,
+              matched with publishers who know their local audience inside out.
             </p>
           </div>
 

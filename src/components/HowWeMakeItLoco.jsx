@@ -113,10 +113,10 @@ export default function HowWeMakeItLoco() {
       arrowColor: 'text-[#FF1493]',
     },
     {
-      title: 'CAMPAGINS',
+      title: 'CAMPAIGNS',
       titleColor: 'text-[#FF1493]',
       desc: 'We promote through our global partner network.',
-      img: '/assets/step-campaigns.webp',
+      img: '/assets/step-campaigns-v2.webp',
       arrowColor: 'text-[#FF1493]',
     },
     {

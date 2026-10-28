@@ -241,7 +241,7 @@ export default function Hero() {
         >
           <div className="flex flex-col">
             <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Leads Generated</span>
-            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-[#10B981] leading-tight">12.5M+</span>
+            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-[#10B981] leading-tight">125K+</span>
           </div>
           <svg viewBox="0 0 60 40" fill="none" className="w-4 sm:w-8 lg:w-14 h-auto">
             <path d="M3 34 L18 20 L28 28 L50 8" stroke="#10B981" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -276,19 +276,19 @@ export default function Hero() {
           </div>
           <div className="flex flex-col">
             <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Countries</span>
-            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-black leading-tight">120+</span>
+            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-black leading-tight">15+</span>
           </div>
         </motion.div>
 
-        {/* STAT CARD 3: Payouts Processed */}
+        {/* STAT CARD 3: Publishers */}
         <motion.div
           style={{ y: stat3Y }}
           {...statAnim(0.35)}
           className={`absolute left-[50%] sm:left-[59%] top-[55%] z-20 ${cardClass} px-1.5 py-1 sm:pl-3 sm:pr-2 sm:py-1.5 lg:pl-4 lg:pr-3 lg:py-2.5 flex items-center gap-1.5 sm:gap-4`}
         >
           <div className="flex flex-col">
-            <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Payouts Processed</span>
-            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-[#FF1493] leading-tight">$8.7M+</span>
+            <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Publishers</span>
+            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-[#FF1493] leading-tight">5K+</span>
           </div>
           <Sun className="w-3.5 h-3.5 sm:w-6 sm:h-6 lg:w-10 lg:h-10 text-[#FFC22E] fill-[#FFD95A] stroke-[2.2]" />
         </motion.div>

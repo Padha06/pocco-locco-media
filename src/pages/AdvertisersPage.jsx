@@ -26,10 +26,10 @@ export default function AdvertisersPage() {
 
       <StatStrip
         stats={[
-          { value: '250+', label: 'Brands running campaigns', color: '#FF1493' },
-          { value: '10K+', label: 'Vetted publishers', color: '#7C3AED' },
-          { value: '12.5M+', label: 'Leads delivered', color: '#0099FF' },
-          { value: '120+', label: 'Countries reached', color: '#10B981' },
+          { value: '150+', label: 'Brands running campaigns', color: '#FF1493' },
+          { value: '5K+', label: 'Vetted publishers', color: '#7C3AED' },
+          { value: '125K+', label: 'Leads delivered', color: '#0099FF' },
+          { value: '15+', label: 'Countries reached', color: '#10B981' },
         ]}
       />
 
@@ -37,7 +37,7 @@ export default function AdvertisersPage() {
         heading={{
           plain: 'Why brands grow with',
           highlight: 'Pocco Locco',
-          sub: 'Everything you need to buy performance with confidence, in one network.',
+          sub: 'Less guessing, fewer wasted clicks, and a team that answers the phone.',
         }}
         items={[
           {
@@ -61,8 +61,8 @@ export default function AdvertisersPage() {
           {
             icon: Globe,
             color: '#10B981',
-            title: 'Global reach, local feel',
-            text: 'Launch in more than 120 countries with publishers who know what works for their own audiences.',
+            title: 'Many markets, one partner',
+            text: 'Run the same offer across 15+ countries from one brief, one report and one point of contact.',
           },
           {
             icon: Coins,

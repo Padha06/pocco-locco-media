@@ -84,11 +84,11 @@ export default function AboutPage() {
 
       <StatStrip
         stats={[
-          { value: '250+', label: 'Advertisers', color: '#00C2FF' },
-          { value: '10K+', label: 'Publishers', color: '#7C3AED' },
-          { value: '12.5M+', label: 'Leads delivered', color: '#FF1493' },
-          { value: '120+', label: 'Countries', color: '#0070F3' },
-          { value: '99.9%', label: 'Uptime', color: '#7C3AED' },
+          { value: '150+', label: 'Advertisers', color: '#00C2FF' },
+          { value: '5K+', label: 'Publishers', color: '#7C3AED' },
+          { value: '125K+', label: 'Leads delivered', color: '#FF1493' },
+          { value: '15+', label: 'Countries', color: '#0070F3' },
+          { value: 'Weekly', label: 'Publisher payouts', color: '#7C3AED' },
         ]}
       />
 
@@ -128,7 +128,7 @@ export default function AboutPage() {
                 Based in <span className="text-[#FFD600]">Amsterdam</span>
               </h2>
               <p className="text-[10px] sm:text-base text-gray-300 font-medium leading-snug">
-                Working with brands and publishers in over 120 countries, from our home on the Leidsestraat.
+                Working with brands and publishers in more than 15 countries, from our home on the Leidsestraat.
               </p>
             </div>
             <div className="col-span-4 flex items-start gap-2 sm:gap-3 text-[9px] sm:text-base font-semibold">

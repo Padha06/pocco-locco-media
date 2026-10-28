@@ -25,8 +25,8 @@ export default function PublishersPage() {
 
       <StatStrip
         stats={[
-          { value: '$8.7M+', label: 'Paid to publishers', color: '#FF1493' },
-          { value: '250+', label: 'Brands to promote', color: '#0099FF' },
+          { value: '5K+', label: 'Publishers in the network', color: '#FF1493' },
+          { value: '150+', label: 'Brands to promote', color: '#0099FF' },
           { value: 'Weekly', label: 'Payouts', color: '#10B981' },
           { value: '24/7', label: 'Support', color: '#7C3AED' },
         ]}
@@ -55,8 +55,8 @@ export default function PublishersPage() {
           {
             icon: Eye,
             color: '#0099FF',
-            title: 'Tracking you can trust',
-            text: 'Every click and conversion is visible in your dashboard, so you always know what you have earned and why.',
+            title: 'Numbers you can check',
+            text: 'Every click and conversion is logged, so the figure on your payout matches the work you put in.',
           },
           {
             icon: UserRound,
@@ -67,8 +67,8 @@ export default function PublishersPage() {
           {
             icon: Link,
             color: '#7C3AED',
-            title: 'Links in one click',
-            text: 'Grab tracking links for any approved offer and start promoting in minutes, not days.',
+            title: 'Go live the same day',
+            text: 'Once you are approved for an offer, your tracking link is ready, so you can start sending traffic straight away.',
           },
           {
             icon: LifeBuoy,
