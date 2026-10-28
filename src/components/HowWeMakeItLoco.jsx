@@ -309,7 +309,7 @@ export default function HowWeMakeItLoco() {
               {/* Left Column: Mascot Pink Rock Hand */}
               <div className="sm:col-span-5 h-[104px] sm:h-[210px] lg:h-[240px] flex items-center justify-center">
                 <PopMascot
-                  src="/assets/mascot-pink-hd.webp"
+                  src="/assets/mascot-pink-v2.webp"
                   alt="Pocco Locco Advertisers Mascot"
                   glow="rgba(255,20,147,0.4)"
                   shadow="rgba(255,20,147,0.25)"
@@ -419,7 +419,7 @@ export default function HowWeMakeItLoco() {
               {/* Right Column: Mascot Blue Peace Hand */}
               <div className="sm:col-span-5 h-[104px] sm:h-[210px] lg:h-[240px] flex items-center justify-center order-1 sm:order-2">
                 <PopMascot
-                  src="/assets/mascot-blue-hd.webp"
+                  src="/assets/mascot-blue-v2.webp"
                   alt="Pocco Locco Publishers Mascot"
                   glow="rgba(0,153,255,0.45)"
                   shadow="rgba(0,153,255,0.25)"

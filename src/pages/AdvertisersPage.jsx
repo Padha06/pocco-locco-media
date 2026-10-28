@@ -16,7 +16,7 @@ export default function AdvertisersPage() {
         highlight="not promises"
         accent="#FF1493"
         text="Pocco Locco connects your brand with a vetted network of publishers who only earn when they deliver: leads, sales or sign-ups. You set the goal. We bring the audience, the tracking and the optimisation."
-        mascot="/assets/mascot-pink-hd.webp"
+        mascot="/assets/mascot-pink-v2.webp"
         splat={null}
         mascotAlt="Pocco Locco advertiser mascot"
         mascotLeft

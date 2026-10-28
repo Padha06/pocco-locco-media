@@ -213,7 +213,7 @@ export default function Hero() {
         {/* Mascot in cart (transparent PNG with blue/pink/yellow splashes and soot ball) */}
         <motion.div style={{ y: mascotY }} className="absolute inset-0">
           <motion.img
-            src="/assets/hero-banner-hd.webp"
+            src="/assets/hero-banner-v2.webp"
             alt="Pocco Locco Brain Mascot in Shopping Cart with Paint Splatter and Soot Monster"
             initial={{ x: 260, y: -100, rotate: 18, scale: 0.7, opacity: 0 }}
             animate={{ x: 0, y: 0, rotate: [18, -6, 2, 0], scale: 1, opacity: 1 }}
