@@ -16,7 +16,8 @@ export default function PublishersPage() {
         highlight="into income"
         accent="#0099FF"
         text="Whether you run a content site, a social following, an app or a media-buying team, Pocco Locco gives you high-converting offers from trusted brands, honest tracking and payouts that arrive on time, every week."
-        mascot="/assets/mascot-blue-hand.webp"
+        mascot="/assets/mascot-blue-hd.webp"
+        splat={null}
         mascotAlt="Pocco Locco publisher mascot"
         primary={{ label: 'Join as a publisher', href: '#contact' }}
         secondary={{ label: 'How it works', href: '#how' }}

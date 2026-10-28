@@ -118,7 +118,7 @@ export default function AboutSection() {
               className="relative z-10 max-w-[150px] sm:max-w-[380px] lg:max-w-[420px] w-full cursor-pointer"
             >
               <img
-                src="/assets/about-man-laptop.webp"
+                src="/assets/about-laptop-hd.webp"
                 alt="Pocco Locco Media Creator with Laptop"
                 className="w-full h-auto object-contain filter drop-shadow-[0_18px_36px_rgba(0,0,0,0.14)]"
               />

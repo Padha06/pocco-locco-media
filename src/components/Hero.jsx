@@ -4,59 +4,6 @@ import { ArrowRight, Play, Sun } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import HeroTitle from './HeroTitle';
 
-// Paint-brushed yellow "sun" that sits behind the mascot's head in the client design
-function PaintSun({ className }) {
-  return (
-    <svg viewBox="0 0 260 260" className={className} aria-hidden="true">
-      <defs>
-        {/* Wobbly outline so the disc reads as hand-painted */}
-        <filter id="sunRough" x="-15%" y="-15%" width="130%" height="130%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="4" seed="11" />
-          <feDisplacementMap in="SourceGraphic" scale="20" />
-        </filter>
-        {/* Dry-brush bristle streaks: stretched noise used as an alpha mask, then roughened */}
-        <filter id="sunDry" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.012 0.55" numOctaves="2" seed="4" result="noise" />
-          <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3 2.1" result="streaks" />
-          <feComposite in="SourceGraphic" in2="streaks" operator="in" result="dry" />
-          <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="9" result="warp" />
-          <feDisplacementMap in="dry" in2="warp" scale="14" />
-        </filter>
-        <filter id="sunSoft">
-          <feGaussianBlur stdDeviation="9" />
-        </filter>
-        <radialGradient id="sunFill" cx="42%" cy="38%" r="70%">
-          <stop offset="0%" stopColor="#FFD24A" />
-          <stop offset="70%" stopColor="#F9BD2F" />
-          <stop offset="100%" stopColor="#F3AA22" />
-        </radialGradient>
-      </defs>
-
-      {/* Main painted disc */}
-      <g filter="url(#sunRough)">
-        <circle cx="130" cy="130" r="98" fill="url(#sunFill)" />
-        {/* Deeper orange pooling and lighter highlights inside the paint */}
-        <ellipse cx="168" cy="160" rx="46" ry="36" fill="#EE9F1C" opacity="0.45" filter="url(#sunSoft)" />
-        <ellipse cx="96" cy="92" rx="40" ry="28" fill="#FFE07A" opacity="0.55" filter="url(#sunSoft)" />
-      </g>
-
-      {/* Bristle streaks dragging past the edge */}
-      <g filter="url(#sunDry)">
-        <circle cx="130" cy="130" r="104" fill="none" stroke="#F7B829" strokeWidth="22" />
-        <path d="M40 120 C 60 50, 190 30, 232 110" fill="none" stroke="#FFD25A" strokeWidth="16" />
-        <path d="M52 190 C 100 236, 196 226, 226 170" fill="none" stroke="#F3AA22" strokeWidth="14" />
-      </g>
-
-      {/* Flicked paint drops */}
-      <circle cx="246" cy="84" r="5" fill="#F9BD2F" />
-      <circle cx="238" cy="62" r="3" fill="#F9BD2F" />
-      <circle cx="252" cy="120" r="2.4" fill="#F9BD2F" />
-      <circle cx="16" cy="170" r="3.5" fill="#F9BD2F" />
-      <circle cx="26" cy="196" r="2" fill="#F9BD2F" />
-    </svg>
-  );
-}
-
 // Loose pencil sketches + outline star that fill the hero's bottom-left corner
 function LeftSketches({ className }) {
   return (
@@ -118,7 +65,6 @@ export default function Hero() {
 
   // Mascot drifts down slightly and the cards float up as you scroll
   const mascotY = useTransform(smoothProgress, [0, 1], [0, 60]);
-  const sunY = useTransform(smoothProgress, [0, 1], [0, 30]);
   const stat1Y = useTransform(smoothProgress, [0, 1], [0, -40]);
   const stat2Y = useTransform(smoothProgress, [0, 1], [0, -20]);
   const stat3Y = useTransform(smoothProgress, [0, 1], [0, -55]);
@@ -229,22 +175,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* RIGHT ARTWORK: sun, mascot (with its own splashes + soot ball), stat cards.
+      {/* RIGHT ARTWORK: the client's banner (mascot, sun, splashes, soot ball) plus stat cards.
           On desktop it is pinned to the section's bottom-right like the client mockup. */}
       <div
         key={animationKey}
-        className="absolute right-0 top-[92px] w-[56%] sm:right-0 sm:top-28 sm:w-[52%] lg:top-auto lg:bottom-0 lg:w-[55%] max-w-[820px] aspect-[1024/762] z-10"
+        className="absolute right-0 top-[92px] w-[56%] sm:right-0 sm:top-28 sm:w-[52%] lg:top-auto lg:bottom-0 lg:w-[55%] max-w-[820px] aspect-[1104/880] z-10"
       >
-        {/* Yellow sun behind the head */}
-        <motion.div
-          style={{ y: sunY }}
-          initial={{ scale: 0.6, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="absolute left-[35%] -top-[5%] w-[44%] pointer-events-none"
-        >
-          <PaintSun className="w-full h-auto" />
-        </motion.div>
 
         {/* Paint balloon that pops when the cart lands */}
         <AnimatePresence>
@@ -277,7 +213,7 @@ export default function Hero() {
         {/* Mascot in cart (transparent PNG with blue/pink/yellow splashes and soot ball) */}
         <motion.div style={{ y: mascotY }} className="absolute inset-0">
           <motion.img
-            src="/assets/pocco-locco-master-hero.webp"
+            src="/assets/hero-banner-hd.webp"
             alt="Pocco Locco Brain Mascot in Shopping Cart with Paint Splatter and Soot Monster"
             initial={{ x: 260, y: -100, rotate: 18, scale: 0.7, opacity: 0 }}
             animate={{ x: 0, y: 0, rotate: [18, -6, 2, 0], scale: 1, opacity: 1 }}

@@ -116,6 +116,26 @@ export function Tape({ color = '#FFD600', className = '' }) {
   );
 }
 
+// Round push-pin seen from slightly above: glossy head, rim, short needle and a soft shadow
+export function PushPin({ color = '#FF1493', className = '' }) {
+  return (
+    <svg viewBox="0 0 40 48" className={className} aria-hidden="true">
+      <ellipse cx="24" cy="40" rx="9" ry="3.2" fill="#000" opacity="0.18" />
+      <path d="M20 26 L23 42" stroke="#8a8f98" strokeWidth="2.2" strokeLinecap="round" />
+      <circle cx="20" cy="17" r="13" fill={color} />
+      <circle cx="20" cy="17" r="13" fill="url(#pinShade)" />
+      <ellipse cx="15.5" cy="12" rx="4.5" ry="3" fill="#fff" opacity="0.65" transform="rotate(-30 15.5 12)" />
+      <circle cx="20" cy="17" r="13" fill="none" stroke="#000" strokeOpacity="0.25" strokeWidth="1.2" />
+      <defs>
+        <radialGradient id="pinShade" cx="35%" cy="30%" r="75%">
+          <stop offset="55%" stopColor="#000" stopOpacity="0" />
+          <stop offset="100%" stopColor="#000" stopOpacity="0.35" />
+        </radialGradient>
+      </defs>
+    </svg>
+  );
+}
+
 const SHAPES = { Splat, Squiggle, Spiral, Zigzag, Dots, Sparkle, Star, Crown, Swoosh, Scribble, Tape };
 
 // Scatter of absolutely-positioned doodles; each item gently bobs so the page feels alive.

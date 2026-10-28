@@ -111,7 +111,7 @@ export function PageHero({ eyebrow, plain, highlight, accent, text, mascot, masc
         </div>
 
         <div className={`col-span-5 relative flex items-center justify-center ${mascotLeft ? 'order-1' : ''}`}>
-          <Splat color={splat} className="absolute w-[110%] h-auto opacity-90 -rotate-6" />
+          {splat && <Splat color={splat} className="absolute w-[110%] h-auto opacity-90 -rotate-6" />}
           <Star fill="#FFD600" className="absolute -top-2 left-[6%] w-6 sm:w-12 h-auto z-20" />
           <Sparkle color={accent} className="absolute bottom-[8%] right-[2%] w-5 sm:w-10 h-auto z-20" />
           <motion.img

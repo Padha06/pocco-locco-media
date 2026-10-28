@@ -149,12 +149,34 @@ export default function ContactAndCta() {
 
               {/* Right Column: Let's Talk mascot */}
               <div className="order-2 lg:order-3 col-span-5 lg:col-span-3 flex justify-center lg:justify-end lg:-mr-6">
-                <motion.img
-                  src="/assets/contact-woman.png"
-                  alt="Pocco Locco Let's Talk Mascot"
-                  whileHover={{ scale: 1.04, rotate: -1 }}
-                  className="mask-feather w-full max-w-[104px] sm:max-w-[340px] lg:max-w-[380px] h-auto object-contain lg:-mt-4"
-                />
+                <motion.div whileHover={{ scale: 1.04, rotate: -1 }} className="relative w-full max-w-[110px] sm:max-w-[340px] lg:max-w-[380px]">
+                  <img
+                    src="/assets/contact-girl-hd.webp"
+                    alt="Pocco Locco Let's Talk Mascot"
+                    className="w-full h-auto object-contain"
+                  />
+                  {/* "LET'S TALK!" speech bubble, drawn as vector so it stays crisp */}
+                  <div className="absolute -top-[6%] -left-[10%] w-[40%] -rotate-6">
+                    <svg viewBox="0 0 120 100" className="w-full h-auto overflow-visible" aria-hidden="true">
+                      <path
+                        d="M58 6 C 94 6, 114 26, 114 48 C 114 72, 92 86, 60 86 C 54 86, 48 85, 42 83 L 30 98 L 30 79 C 14 72, 4 61, 4 48 C 4 26, 24 6, 58 6 Z"
+                        fill="#fff"
+                        stroke="#111"
+                        strokeWidth="4"
+                        strokeLinejoin="round"
+                      />
+                      <text x="59" y="44" textAnchor="middle" fontSize="27" fontWeight="900" fill="#111" style={{ fontFamily: "'Permanent Marker', cursive" }}>
+                        LET&apos;S
+                      </text>
+                      <text x="59" y="72" textAnchor="middle" fontSize="27" fontWeight="900" fill="#111" style={{ fontFamily: "'Permanent Marker', cursive" }}>
+                        TALK!
+                      </text>
+                    </svg>
+                  </div>
+                  <DoodleStar className="absolute top-[2%] left-[38%] w-[9%] text-black fill-[#FFD600] stroke-[5]" />
+                  <DoodleStar className="absolute top-[18%] right-[2%] w-[8%] text-black fill-[#FFD600] stroke-[5]" />
+                  <DoodleStar className="absolute top-[40%] -left-[4%] w-[6%] text-black fill-[#FF1493] stroke-[5]" />
+                </motion.div>
               </div>
 
             </div>
@@ -193,11 +215,11 @@ export default function ContactAndCta() {
             {/* Center: Rocket Brain Mascot */}
             <div className="col-span-5 lg:col-span-4 flex justify-center">
               <motion.img
-                src="/assets/cta-rocket.png"
+                src="/assets/cta-rocket-hd.webp"
                 alt="Pocco Locco Rocket Brain Mascot"
                 style={{ x: rocketX, y: rocketY }}
                 whileHover={{ scale: 1.06 }}
-                className="mask-feather w-full max-w-[460px] h-auto object-contain"
+                className="w-full max-w-[150px] sm:max-w-[400px] h-auto object-contain"
               />
             </div>
 

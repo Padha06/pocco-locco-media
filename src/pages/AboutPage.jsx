@@ -26,7 +26,7 @@ export default function AboutPage() {
         accent="#FF1493"
         splat="#FFD600"
         text="Pocco Locco Media is a global performance marketing network based in Amsterdam. We connect advertisers with high-quality publishers and make every click, lead and sale count."
-        mascot="/assets/about-man-laptop.webp"
+        mascot="/assets/about-laptop-hd.webp"
         mascotAlt="Pocco Locco team member at a laptop"
         primary={{ label: 'Work with us', href: '#contact' }}
         secondary={{ label: 'Our story', href: '#story' }}

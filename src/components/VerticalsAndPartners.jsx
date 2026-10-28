@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Star } from 'lucide-react';
-import { CraftScatter, Tape } from './CraftDecor';
+import { CraftScatter, Tape, PushPin } from './CraftDecor';
 
 const TAPE_COLORS = ['#FFD600', '#FF8DC7', '#7CD3FF', '#FFD600'];
+const PIN_COLORS = ['#FF1493', '#0099FF', '#FFC800', '#FF1493'];
+const PIN_TILTS = [-2.5, 1.8, -1.6, 2.2];
 
 // Partner wordmarks drawn in type + small glyphs so the row stays crisp at any size
 function PartnerLogo({ name }) {
@@ -164,24 +166,32 @@ export default function VerticalsAndPartners() {
         </div>
 
         {/* 4 Verticals Cards Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-5 sm:gap-5 mb-8 sm:mb-12">
+        {/* Each campaign is a sheet of paper pinned to the board: slight tilt, push-pin on top,
+            and it straightens up when hovered */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-7 sm:gap-6 mb-8 sm:mb-12 pt-3">
           {verticals.map((v, idx) => (
             <motion.div
               key={v.category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotate: PIN_TILTS[idx] }}
+              whileInView={{ opacity: 1, y: 0, rotate: PIN_TILTS[idx] }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="group relative bg-white rounded-xl border border-gray-200 shadow-[0_4px_18px_rgba(0,0,0,0.06)] hover:shadow-xl transition-shadow duration-300 flex flex-col"
+              whileHover={{ y: -6, rotate: 0 }}
+              style={{ transformOrigin: '50% 0%' }}
+              className="group relative bg-[#fffdf8] rounded-md border border-gray-200/80 shadow-[2px_8px_18px_rgba(0,0,0,0.12)] hover:shadow-2xl transition-shadow duration-300 flex flex-col p-2 sm:p-2.5"
             >
-              <Tape
-                color={TAPE_COLORS[idx]}
-                className={`absolute -top-3 left-1/2 -translate-x-1/2 w-12 sm:w-16 z-10 ${idx % 2 ? 'rotate-3' : '-rotate-3'}`}
-              />
+              <motion.div
+                initial={{ y: -24, opacity: 0, scale: 1.4 }}
+                whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: 'spring', stiffness: 420, damping: 14, delay: 0.35 + idx * 0.1 }}
+                className="absolute -top-4 sm:-top-5 left-1/2 -translate-x-1/2 z-20 w-7 sm:w-9"
+              >
+                <PushPin color={PIN_COLORS[idx]} className="w-full h-auto" />
+              </motion.div>
               {/* Thumbnail with category pill straddling the bottom edge */}
               <div className="relative">
-                <div className="aspect-[2.3/1] overflow-hidden bg-black rounded-t-xl">
+                <div className="aspect-[2.3/1] overflow-hidden bg-black rounded-sm">
                   <img
                     src={v.img}
                     alt={v.title}

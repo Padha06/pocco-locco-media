@@ -9,16 +9,14 @@ const BLUE = '#1E9BF0';
 const YELLOW = '#FFD600';
 
 // Founding team, from the client's "Meet the Team" artwork.
-// Photos are cut from that artwork; swap the three team-*.webp files for originals when available.
+// Photos are the client's enhanced portraits with the off-white background keyed out.
 const TEAM = [
   {
     name: 'Manoj',
     role: 'Founder & CEO',
     title: 'Driving Vision and Growth',
     accent: PINK,
-    photo: '/assets/team-manoj.webp',
-    bubble: ['Big', 'Ideas', 'Bigger', 'Results'],
-    bubbleAccent: 3,
+    photo: '/assets/team-manoj-hd.webp',
     about:
       'Leads the overall vision, strategy and growth of Pocco Locco Media. Focuses on CPL vertical, advertiser relationships and scaling the business globally.',
     facts: [
@@ -35,9 +33,7 @@ const TEAM = [
     role: 'Co-Founder & CFO',
     title: 'Finance, Compliance & Operations',
     accent: BLUE,
-    photo: '/assets/team-prabhu.webp',
-    bubble: ['Numbers', 'People', 'Progress'],
-    bubbleAccent: -1,
+    photo: '/assets/team-prabhu-hd.webp',
     about:
       'Handles finance, compliance, audit and HR. Manages publisher onboarding, advertiser payments, publisher payouts and overall company financial operations.',
     facts: [
@@ -54,9 +50,7 @@ const TEAM = [
     role: 'Director & COO',
     title: 'Campaigns, Publishers & Partnerships',
     accent: PINK,
-    photo: '/assets/team-vartika.webp',
-    bubble: ['Campaigns', 'People', 'Partnerships'],
-    bubbleAccent: -1,
+    photo: '/assets/team-vartika-hd.webp',
     about:
       'Leads CPA campaigns and publisher management. Drives campaign execution, publisher partnerships and overall operational excellence across CPL & CPA campaigns.',
     facts: [
@@ -70,38 +64,6 @@ const TEAM = [
   },
 ];
 
-// Hand-drawn speech bubble; first letters are tinted blue like the client art,
-// or one whole word is pink when bubbleAccent points at it
-function SpeechBubble({ words, accentIndex, className = 'relative' }) {
-  return (
-    <div className={className}>
-      <svg viewBox="0 0 120 100" preserveAspectRatio="none" className="absolute inset-0 w-full h-full overflow-visible" aria-hidden="true">
-        <path
-          d="M60 6 C 96 6, 114 24, 114 46 C 114 70, 92 84, 62 84 C 52 84, 44 83, 36 80 L 14 94 L 22 74 C 12 66, 6 56, 6 46 C 6 24, 26 6, 60 6 Z"
-          fill="#fff"
-          stroke="#111"
-          strokeWidth="3"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <div className="relative font-marker uppercase leading-[0.95] text-center text-[12px] sm:text-[13px] xl:text-[15px] pl-4 pr-3 pt-4 pb-7">
-        {words.map((w, i) => (
-          <span key={w} className="block" style={i === accentIndex ? { color: PINK } : undefined}>
-            {accentIndex === -1 ? (
-              <>
-                <span style={{ color: BLUE }}>{w[0]}</span>
-                {w.slice(1)}
-              </>
-            ) : (
-              w
-            )}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 function MemberCard({ m, index }) {
   const solid = m.focusStyle === 'solid';
   return (
@@ -113,17 +75,12 @@ function MemberCard({ m, index }) {
       whileHover={{ y: -6 }}
       className="relative bg-white rounded-2xl border border-gray-200 shadow-[0_10px_30px_rgba(0,0,0,0.07)] flex flex-col"
     >
-      {/* Photo on its paint splash, with the bubble and role tag drawn on top */}
-      <div className="relative h-[230px] sm:h-[250px] lg:h-[230px] xl:h-[250px]">
+      {/* Photo with its paint splash and speech bubble (background keyed out), role tag on top */}
+      <div className="relative aspect-[3/2] px-2 pt-2">
         <img
           src={m.photo}
           alt={`${m.name}, ${m.role}`}
-          className="team-photo absolute bottom-0 left-0 h-full w-[76%] object-cover object-top rounded-tl-2xl"
-        />
-        <SpeechBubble
-          words={m.bubble}
-          accentIndex={m.bubbleAccent}
-          className="absolute top-6 right-2 w-[46%] max-w-[180px]"
+          className="w-full h-full object-contain object-bottom"
         />
         <span
           className="absolute -bottom-3 left-4 bg-[#FFD600] text-black text-xs sm:text-sm font-black uppercase tracking-wide px-3.5 py-1.5 rounded-md shadow-[2px_2px_0_#111] border-2 border-black"
