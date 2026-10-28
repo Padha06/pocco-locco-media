@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'motion/react';
 import { ArrowRight, Play, Sun } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import HeroTitle from './HeroTitle';
 
 // Paint-brushed yellow "sun" that sits behind the mascot's head in the client design
 function PaintSun({ className }) {
@@ -184,11 +185,7 @@ export default function Hero() {
               className="relative max-w-[580px] w-full mb-2 sm:mb-5 -ml-1 sm:-ml-2"
               whileHover={{ scale: 1.02 }}
             >
-              <img
-                src="/assets/hero-title-complete.webp"
-                alt="Performance Marketing Network - We Turn Traffic Into Results"
-                className="w-full h-auto object-contain"
-              />
+              <HeroTitle className="w-full" />
             </motion.div>
 
             <motion.p

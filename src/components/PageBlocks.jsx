@@ -58,7 +58,8 @@ export function SectionHeading({ plain, highlight, accent = '#FF1493', sub, cent
 }
 
 // Big page opener: copy on the left, mascot on a paint splat on the right
-export function PageHero({ eyebrow, plain, highlight, accent, text, mascot, mascotAlt, primary, secondary, splat = accent }) {
+// mascotLeft puts the artwork in the left column (used on the Advertisers page)
+export function PageHero({ eyebrow, plain, highlight, accent, text, mascot, mascotAlt, primary, secondary, splat = accent, mascotLeft = false }) {
   return (
     <section className="relative pt-24 sm:pt-32 lg:pt-36 pb-6 sm:pb-12 overflow-hidden">
       <CraftScatter
@@ -71,7 +72,7 @@ export function PageHero({ eyebrow, plain, highlight, accent, text, mascot, masc
         ]}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-12 gap-3 lg:gap-10 items-center">
-        <div className="col-span-7">
+        <div className={`col-span-7 ${mascotLeft ? 'order-2' : ''}`}>
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -109,7 +110,7 @@ export function PageHero({ eyebrow, plain, highlight, accent, text, mascot, masc
           </motion.div>
         </div>
 
-        <div className="col-span-5 relative flex items-center justify-center">
+        <div className={`col-span-5 relative flex items-center justify-center ${mascotLeft ? 'order-1' : ''}`}>
           <Splat color={splat} className="absolute w-[110%] h-auto opacity-90 -rotate-6" />
           <Star fill="#FFD600" className="absolute -top-2 left-[6%] w-6 sm:w-12 h-auto z-20" />
           <Sparkle color={accent} className="absolute bottom-[8%] right-[2%] w-5 sm:w-10 h-auto z-20" />

@@ -18,6 +18,7 @@ export default function AdvertisersPage() {
         text="Pocco Locco connects your brand with a vetted network of publishers who only earn when they deliver: leads, sales or sign-ups. You set the goal. We bring the audience, the tracking and the optimisation."
         mascot="/assets/mascot-pink-hand.webp"
         mascotAlt="Pocco Locco advertiser mascot"
+        mascotLeft
         primary={{ label: 'Start a campaign', href: '#contact' }}
         secondary={{ label: 'See case studies', href: '/#cases' }}
       />

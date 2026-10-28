@@ -113,6 +113,19 @@
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
+/* Team photos are cut from the client artwork: fade the top and sides so stray
+   design marks in the corners melt into the card, keep the bottom edge solid */
+.team-photo {
+  -webkit-mask-image:
+    radial-gradient(ellipse 95% 100% at 45% 100%, #000 60%, transparent 100%),
+    linear-gradient(to right, #000 70%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 95% 100% at 45% 100%, #000 60%, transparent 100%),
+    linear-gradient(to right, #000 70%, transparent 100%);
+  mask-composite: intersect;
+}
+
 /* Horizontal swipe rows without a visible scrollbar */
 .no-scrollbar {
   scrollbar-width: none;

@@ -9,6 +9,7 @@ import ContactAndCta from './components/ContactAndCta';
 import AdvertisersPage from './pages/AdvertisersPage';
 import PublishersPage from './pages/PublishersPage';
 import AboutPage from './pages/AboutPage';
+import TeamPage from './pages/TeamPage';
 import { useLocation } from './router';
 
 function HomePage() {
@@ -32,6 +33,7 @@ const PAGES = {
   '/advertisers': AdvertisersPage,
   '/publishers': PublishersPage,
   '/about': AboutPage,
+  '/team': TeamPage,
 };
 
 export default function App() {
