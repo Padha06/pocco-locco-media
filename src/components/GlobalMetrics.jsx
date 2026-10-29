@@ -1,111 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { CraftScatter } from './CraftDecor';
 
-// The globe video has an off-white background. CSS blend modes can't hide it on iOS Safari
-// (it ignores mix-blend-mode on <video>), so each frame is drawn to a canvas and the white is
-// converted to real transparency ("colour to alpha"). Works the same in every browser.
-const WHITE_POINT = 238; // the video's background sits around rgb(236-247)
-const CANVAS_W = 640;
-const CANVAS_H = 360;
-
-function keyOutWhite(ctx) {
-  const frame = ctx.getImageData(0, 0, CANVAS_W, CANVAS_H);
-  const d = frame.data;
-  const lift = 255 / WHITE_POINT;
-  for (let i = 0; i < d.length; i += 4) {
-    const r = Math.min(255, d[i] * lift);
-    const g = Math.min(255, d[i + 1] * lift);
-    const b = Math.min(255, d[i + 2] * lift);
-    const m = Math.min(r, g, b);
-    const a = 255 - m;
-    if (a < 4) {
-      d[i + 3] = 0;
-      continue;
-    }
-    // Un-mix the white so the colour stays true once it is see-through
-    const k = 255 / a;
-    d[i] = (r - m) * k;
-    d[i + 1] = (g - m) * k;
-    d[i + 2] = (b - m) * k;
-    d[i + 3] = a;
-  }
-  ctx.putImageData(frame, 0, 0);
-}
-
-function KeyedGlobe() {
-  const canvasRef = useRef(null);
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const video = videoRef.current;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-    let raf = 0;
-    let lastTime = -1;
-    let onScreen = true;
-
-    const paint = (source) => {
-      ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
-      ctx.drawImage(source, 0, 0, CANVAS_W, CANVAS_H);
-      keyOutWhite(ctx);
-    };
-
-    // Still frame first, so there is a clean globe even if autoplay is blocked (e.g. iOS Low Power Mode)
-    const poster = new Image();
-    poster.onload = () => {
-      if (lastTime < 0) paint(poster);
-    };
-    poster.src = '/assets/globe-poster.webp';
-
-    const tick = () => {
-      if (onScreen && video.readyState >= 2 && video.currentTime !== lastTime) {
-        lastTime = video.currentTime;
-        paint(video);
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-
-    // Only decode and key frames while the globe is on screen
-    const io = new IntersectionObserver(([entry]) => {
-      onScreen = entry.isIntersecting;
-      if (onScreen) video.play().catch(() => {});
-      else video.pause();
-    });
-    io.observe(canvas);
-
-    return () => {
-      cancelAnimationFrame(raf);
-      io.disconnect();
-    };
-  }, []);
-
-  return (
-    <>
-      {/* Source video: kept in the layout (iOS only autoplays visible videos) but fully transparent */}
-      <video
-        ref={videoRef}
-        src="/assets/rotating-globe.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-contain opacity-[0.01] pointer-events-none"
-      />
-      <canvas
-        ref={canvasRef}
-        width={CANVAS_W}
-        height={CANVAS_H}
-        role="img"
-        aria-label="Rotating globe"
-        className="relative w-full h-full object-contain pointer-events-none select-none"
-      />
-    </>
-  );
-}
+// three.js is only downloaded once the section is close to the viewport
+const Globe3D = lazy(() => import('./Globe3D'));
 
 export default function GlobalMetrics() {
   const containerRef = useRef(null);
@@ -116,6 +14,25 @@ export default function GlobalMetrics() {
   });
 
   const globeScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1.02, 0.98]);
+
+  // Start loading the 3D globe when the section is within ~600px of the screen
+  const globeRef = useRef(null);
+  const [loadGlobe, setLoadGlobe] = useState(false);
+  useEffect(() => {
+    const el = globeRef.current;
+    if (!el) return undefined;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoadGlobe(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: '600px 0px' }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const metrics = [
     { value: '150+', label: 'ADVERTISERS', color: 'text-[#00C2FF]' },
@@ -144,7 +61,7 @@ export default function GlobalMetrics() {
         <div className="grid grid-cols-12 gap-2 lg:gap-8 items-center mb-2">
           
           {/* Left: Heading & Description */}
-          <div className="col-span-7 lg:col-span-6">
+          <div className="col-span-7 lg:col-span-6 relative z-20">
             <h2 className="font-display text-[26px] sm:text-5xl lg:text-[64px] text-black uppercase leading-[1.05] mb-2 sm:mb-4">
               RESULTS THAT <br />
               CROSS <span className="text-[#FF1493]">BORDERS</span>
@@ -162,9 +79,25 @@ export default function GlobalMetrics() {
               style={{ scale: globeScale }}
               className="relative flex items-center"
             >
-              {/* Rotating Globe Video (Seamless Pure White Blend with NO gray box) */}
-              <div className="relative w-[96px] sm:w-[260px] lg:w-[290px] aspect-square shrink-0 flex items-center justify-center">
-                <KeyedGlobe />
+              {/* Interactive 3D globe sitting inside the client's paint-splash ring */}
+              <div ref={globeRef} className="relative w-[124px] sm:w-[300px] lg:w-[360px] aspect-square shrink-0">
+                <img
+                  src="/assets/globe-paint-ring.webp"
+                  alt=""
+                  aria-hidden="true"
+                  // Wide and a little flattened, sitting just below the globe's centre; the top
+                  // fades out so the paint shows at the sides and below, like the client artwork
+                  style={{
+                    WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, #000 24%)',
+                    maskImage: 'linear-gradient(to bottom, transparent 0%, #000 24%)',
+                  }}
+                  className="absolute left-1/2 top-[57%] w-[152%] h-[88%] max-w-none object-fill -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none"
+                />
+                {loadGlobe && (
+                  <Suspense fallback={null}>
+                    <Globe3D className="absolute inset-0" />
+                  </Suspense>
+                )}
               </div>
 
               {/* Tilted Doodle Tag: GLOBAL OPPORTUNITIES (Positioned directly beside globe splatter) */}
@@ -180,7 +113,7 @@ export default function GlobalMetrics() {
                   y: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
                   rotate: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
                 }}
-                className="relative -ml-6 sm:-ml-16 lg:-ml-20 w-[70px] sm:w-[200px] lg:w-[230px] shrink-0 pointer-events-none select-none z-10"
+                className="relative -ml-3 sm:-ml-6 lg:-ml-4 w-[64px] sm:w-[180px] lg:w-[210px] shrink-0 pointer-events-none select-none z-10"
               >
                 <img
                   src="/assets/global-opportunities-tag.webp"

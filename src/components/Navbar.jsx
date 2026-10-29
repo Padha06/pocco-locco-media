@@ -34,7 +34,7 @@ export default function Navbar({ path = '/' }) {
     { name: 'ADVERTISERS', href: '/advertisers' },
     { name: 'PUBLISHERS', href: '/publishers' },
     { name: 'MEET THE TEAM', href: '/team' },
-    { name: 'JOBS', href: '#jobs' },
+    { name: 'JOBS', href: '/jobs' },
   ].map((link) => ({ ...link, active: link.href === path }));
 
   return (

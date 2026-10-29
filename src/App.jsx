@@ -10,6 +10,7 @@ import AdvertisersPage from './pages/AdvertisersPage';
 import PublishersPage from './pages/PublishersPage';
 import AboutPage from './pages/AboutPage';
 import TeamPage from './pages/TeamPage';
+import JobsPage from './pages/JobsPage';
 import { useLocation } from './router';
 
 function HomePage() {
@@ -34,6 +35,7 @@ const PAGES = {
   '/publishers': PublishersPage,
   '/about': AboutPage,
   '/team': TeamPage,
+  '/jobs': JobsPage,
 };
 
 export default function App() {
