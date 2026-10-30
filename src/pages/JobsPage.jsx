@@ -12,7 +12,7 @@ import {
   FileText,
   ArrowRight,
 } from 'lucide-react';
-import { Splat, Star, Crown, Sparkle } from '../components/CraftDecor';
+import { Splat, Crown, Sparkle } from '../components/CraftDecor';
 import ContactAndCta from '../components/ContactAndCta';
 
 const PINK = '#FF1493';
@@ -95,48 +95,46 @@ export default function JobsPage() {
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header: megaphone doodle, OPENINGS title, yellow sticky note */}
-          <div className="relative text-center mb-8 sm:mb-12">
-            <motion.div
-              initial={{ rotate: -20, scale: 0.6, opacity: 0 }}
-              animate={{ rotate: -12, scale: 1, opacity: 1 }}
+          <div className="relative flex items-center justify-center gap-2 sm:gap-6 mb-8 sm:mb-12 sm:pr-24 lg:pr-28">
+            {/* Client's megaphone doodle, left */}
+            <motion.img
+              src="/assets/jobs-megaphone-left.webp"
+              alt=""
+              aria-hidden="true"
+              initial={{ rotate: -14, scale: 0.6, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 220, damping: 12 }}
-              className="absolute left-0 sm:left-4 top-12 sm:top-2 w-11 sm:w-24 lg:w-28 text-black"
-            >
-              <svg viewBox="0 0 120 90" fill="none" aria-hidden="true" className="w-full h-auto">
-                <path d="M14 40 L60 18 L66 72 L20 58 Z" fill={PINK} stroke="#111" strokeWidth="4" strokeLinejoin="round" />
-                <rect x="4" y="38" width="16" height="22" rx="5" fill="#fff" stroke="#111" strokeWidth="4" />
-                <path d="M26 58 L32 80 L42 78 L38 62" fill={PINK} stroke="#111" strokeWidth="4" strokeLinejoin="round" />
-                <path d="M78 26 L92 16 M80 44 L98 44 M78 62 L92 72" stroke="#111" strokeWidth="5" strokeLinecap="round" />
-              </svg>
-            </motion.div>
-            <Star fill={YELLOW} className="hidden sm:block absolute left-10 top-28 w-10" />
+              className="w-14 sm:w-28 lg:w-32 h-auto shrink-0"
+            />
 
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="block w-fit mx-auto bg-black text-white text-[11px] sm:text-sm font-black uppercase tracking-widest px-3 sm:px-4 py-1 sm:py-1.5 rounded-md -rotate-1 mb-2 sm:mb-3"
-            >
-              Internships at Pocco Locco
-            </motion.span>
+            {/* Brush-lettered OPENINGS from the client artwork */}
             <motion.h1
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ type: 'spring', stiffness: 200, damping: 14, delay: 0.05 }}
-              className="relative inline-block font-display uppercase leading-none text-6xl sm:text-8xl lg:text-[124px] text-[#FF1493] [-webkit-text-stroke:3px_#111] [paint-order:stroke_fill]"
+              className="relative w-[58%] sm:w-[52%] max-w-[560px]"
             >
-              Openings
-              <Crown fill={YELLOW} className="absolute -right-8 sm:-right-14 -bottom-1 w-8 sm:w-14 rotate-12" />
+              <img src="/assets/jobs-openings-title.webp" alt="Openings" className="w-full h-auto" />
+              <Crown fill={YELLOW} className="absolute -right-3 sm:-right-8 -bottom-6 sm:-bottom-10 w-8 sm:w-14 rotate-6" />
             </motion.h1>
-            <svg viewBox="0 0 300 16" className="w-48 sm:w-72 mx-auto mt-1" fill="none" aria-hidden="true">
-              <path d="M4 12 Q 150 0, 296 8" stroke="#111" strokeWidth="4" strokeLinecap="round" />
-            </svg>
+
+            {/* Same megaphone, mirrored, right */}
+            <motion.img
+              src="/assets/jobs-megaphone-right.webp"
+              alt=""
+              aria-hidden="true"
+              initial={{ rotate: 14, scale: 0.6, opacity: 0 }}
+              animate={{ rotate: 0, scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 220, damping: 12, delay: 0.08 }}
+              className="w-14 sm:w-28 lg:w-32 h-auto shrink-0"
+            />
 
             {/* Yellow sticky note */}
             <motion.div
               initial={{ rotate: 20, opacity: 0, y: -10 }}
               animate={{ rotate: 8, opacity: 1, y: 0 }}
               transition={{ type: 'spring', stiffness: 180, damping: 12, delay: 0.2 }}
-              className="hidden sm:block absolute right-2 top-0 w-40 lg:w-44"
+              className="hidden sm:block absolute -right-2 -top-4 w-32 lg:w-40"
             >
               <svg viewBox="0 0 160 130" preserveAspectRatio="none" className="absolute inset-0 w-full h-full" aria-hidden="true">
                 <path d="M6 14 C 50 2, 120 4, 154 10 L 150 120 C 110 128, 40 126, 10 118 Z" fill={YELLOW} />

@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'motion/react';
-import { ArrowRight, Play, Sun } from 'lucide-react';
+import { ArrowRight, Play } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import HeroTitle from './HeroTitle';
+
+// Text that circles the hero's play button; change it once the client's video is decided
+const VIDEO_LABEL = 'Watch how we work';
 
 // Loose pencil sketches + outline star that fill the hero's bottom-left corner
 function LeftSketches({ className }) {
@@ -42,13 +45,9 @@ function YellowCrown({ className }) {
   );
 }
 
-const cardClass =
-  'bg-white/90 backdrop-blur-sm rounded-md sm:rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-white';
-
 export default function Hero() {
   const containerRef = useRef(null);
   const [animationKey, setAnimationKey] = useState(0);
-  const [hasCrashed, setHasCrashed] = useState(false);
   const [balloonPopped, setBalloonPopped] = useState(false);
 
   // Scroll parallax linking
@@ -62,21 +61,14 @@ export default function Hero() {
     damping: 30,
     restDelta: 0.001,
   });
-
-  // Mascot drifts down slightly and the cards float up as you scroll
   const mascotY = useTransform(smoothProgress, [0, 1], [0, 60]);
-  const stat1Y = useTransform(smoothProgress, [0, 1], [0, -40]);
-  const stat2Y = useTransform(smoothProgress, [0, 1], [0, -20]);
-  const stat3Y = useTransform(smoothProgress, [0, 1], [0, -55]);
 
   // Cart crash into the paint balloon on load
   useEffect(() => {
-    setHasCrashed(false);
     setBalloonPopped(false);
 
     const popTimer = setTimeout(() => {
       setBalloonPopped(true);
-      setHasCrashed(true);
       confetti({
         particleCount: 65,
         spread: 90,
@@ -98,12 +90,6 @@ export default function Hero() {
       colors: ['#FF1493', '#FFD600', '#00B4D8'],
     });
   };
-
-  const statAnim = (delay) => ({
-    initial: { opacity: 0, x: 30, scale: 0.85 },
-    animate: hasCrashed ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: 30, scale: 0.85 },
-    transition: { type: 'spring', stiffness: 220, damping: 18, delay },
-  });
 
   return (
     <section
@@ -175,11 +161,11 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* RIGHT ARTWORK: the client's banner (mascot, sun, splashes, soot ball) plus stat cards.
+      {/* RIGHT ARTWORK: the client's banner (mascot, sun, splashes, soot ball).
           On desktop it is pinned to the section's bottom-right like the client mockup. */}
       <div
         key={animationKey}
-        className="absolute right-0 top-[92px] w-[56%] sm:right-0 sm:top-28 sm:w-[52%] lg:top-auto lg:bottom-0 lg:w-[55%] max-w-[820px] aspect-[1104/880] z-10"
+        className="absolute right-0 top-[92px] w-[56%] sm:right-0 sm:top-28 sm:w-[52%] lg:top-auto lg:bottom-0 lg:w-[55%] max-w-[820px] aspect-[1120/928] z-10"
       >
 
         {/* Paint balloon that pops when the cart lands */}
@@ -213,7 +199,7 @@ export default function Hero() {
         {/* Mascot in cart (transparent PNG with blue/pink/yellow splashes and soot ball) */}
         <motion.div style={{ y: mascotY }} className="absolute inset-0">
           <motion.img
-            src="/assets/hero-banner-v2.webp"
+            src="/assets/hero-banner-v4.webp"
             alt="Pocco Locco Brain Mascot in Shopping Cart with Paint Splatter and Soot Monster"
             initial={{ x: 260, y: -100, rotate: 18, scale: 0.7, opacity: 0 }}
             animate={{ x: 0, y: 0, rotate: [18, -6, 2, 0], scale: 1, opacity: 1 }}
@@ -233,65 +219,56 @@ export default function Hero() {
           <YellowCrown className="w-full h-auto" />
         </motion.div>
 
-        {/* STAT CARD 1: Leads Generated + green trend arrow + play button */}
-        <motion.div
-          style={{ y: stat1Y }}
-          {...statAnim(0.15)}
-          className={`absolute left-[46%] sm:left-[54%] top-[9%] z-20 ${cardClass} px-1.5 py-1 sm:pl-3 sm:pr-2 sm:py-1.5 lg:pl-4 lg:pr-3 lg:py-2.5 flex items-center gap-1.5 sm:gap-3`}
-        >
-          <div className="flex flex-col">
-            <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Leads Generated</span>
-            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-[#10B981] leading-tight">125K+</span>
-          </div>
-          <svg viewBox="0 0 60 40" fill="none" className="w-4 sm:w-8 lg:w-14 h-auto">
-            <path d="M3 34 L18 20 L28 28 L50 8" stroke="#10B981" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M38 6 L52 6 L52 20" stroke="#10B981" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </motion.div>
+        {/* Pink play button just past the sun's right edge (the artwork ends at ~84% across here),
+            with "WATCH THE VIDEO" curving round its OUTER side only, over plain paper, so no
+            text sits on the artwork */}
+        <div className="absolute left-[84%] sm:left-[87.5%] lg:left-[88%] xl:left-[90%] top-[26%] -translate-x-1/2 -translate-y-1/2 z-20 w-[60px] h-[60px] sm:w-[84px] sm:h-[84px] lg:w-[116px] lg:h-[116px] flex items-center justify-center">
+          <motion.svg
+            viewBox="0 0 100 100"
+            initial={{ opacity: 0, x: 6 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 1.1 }}
+            className="hidden sm:block absolute inset-0 w-full h-full overflow-visible pointer-events-none select-none"
+            aria-hidden="true"
+          >
+            <defs>
+              {/* right-hand arc of the circle, from just past the top (-100deg) round to just past the bottom (+100deg) */}
+              <path id="videoArc" d="M43.06 10.61 A40 40 0 1 1 43.06 89.39" />
+            </defs>
+            <text
+              fontSize="11"
+              fontWeight="900"
+              fill="#111"
+              letterSpacing="0"
+              style={{ fontFamily: "'Montserrat', 'Arial Black', sans-serif", textTransform: 'uppercase' }}
+            >
+              <textPath href="#videoArc" startOffset="50%" textAnchor="middle" textLength="136" lengthAdjust="spacingAndGlyphs">
+                {VIDEO_LABEL}
+              </textPath>
+            </text>
+          </motion.svg>
 
-        <motion.button
-          type="button"
-          style={{ y: stat1Y }}
-          {...statAnim(0.2)}
-          whileHover={{ scale: 1.12 }}
-          whileTap={{ scale: 0.9 }}
-          className="absolute left-[88%] top-[24%] sm:left-[86%] sm:top-[19%] z-20 flex w-6 h-6 sm:w-9 sm:h-9 lg:w-12 lg:h-12 rounded-full bg-[#FF1493] items-center justify-center text-white shadow-lg shadow-pink-500/40"
-          title="Watch video"
-        >
-          <Play className="w-3 h-3 sm:w-5 sm:h-5 fill-white ml-0.5" />
-        </motion.button>
-
-        {/* STAT CARD 2: Countries */}
-        <motion.div
-          style={{ y: stat2Y }}
-          {...statAnim(0.25)}
-          className={`absolute left-[54%] sm:left-[60%] top-[33%] z-20 ${cardClass} px-1.5 py-1 sm:pl-2 sm:pr-4 sm:py-1.5 lg:pl-3 lg:pr-6 lg:py-2.5 flex items-center gap-1.5 sm:gap-3`}
-        >
-          <div className="w-4 h-4 sm:w-8 sm:h-8 lg:w-11 lg:h-11 rounded-full bg-[#1E88E5] flex items-center justify-center text-white shadow-sm">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-3 h-3 sm:w-5 sm:h-5 lg:w-7 lg:h-7">
-              <circle cx="12" cy="12" r="9.5" />
-              <ellipse cx="12" cy="12" rx="4.2" ry="9.5" />
-              <path d="M2.5 12h19M4 7h16M4 17h16" />
-            </svg>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Countries</span>
-            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-black leading-tight">15+</span>
-          </div>
-        </motion.div>
-
-        {/* STAT CARD 3: Publishers */}
-        <motion.div
-          style={{ y: stat3Y }}
-          {...statAnim(0.35)}
-          className={`absolute left-[50%] sm:left-[59%] top-[55%] z-20 ${cardClass} px-1.5 py-1 sm:pl-3 sm:pr-2 sm:py-1.5 lg:pl-4 lg:pr-3 lg:py-2.5 flex items-center gap-1.5 sm:gap-4`}
-        >
-          <div className="flex flex-col">
-            <span className="text-[7px] sm:text-[10px] lg:text-xs font-semibold text-gray-500 whitespace-nowrap">Publishers</span>
-            <span className="text-[13px] sm:text-xl lg:text-[28px] font-black text-[#FF1493] leading-tight">5K+</span>
-          </div>
-          <Sun className="w-3.5 h-3.5 sm:w-6 sm:h-6 lg:w-10 lg:h-10 text-[#FFC22E] fill-[#FFD95A] stroke-[2.2]" />
-        </motion.div>
+          <motion.button
+            type="button"
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 16, delay: 0.9 }}
+            whileHover={{ scale: 1.12 }}
+            whileTap={{ scale: 0.9 }}
+            title={VIDEO_LABEL}
+            aria-label={VIDEO_LABEL}
+            className="relative flex w-7 h-7 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-[#FF1493] items-center justify-center text-white shadow-lg shadow-pink-500/40"
+          >
+            {/* small pulse ring (kept tight so it doesn't spread onto the artwork) */}
+            <motion.span
+              aria-hidden="true"
+              animate={{ scale: [1, 1.35], opacity: [0.45, 0] }}
+              transition={{ repeat: Infinity, duration: 1.6, ease: 'easeOut' }}
+              className="absolute inset-0 rounded-full bg-[#FF1493]"
+            />
+            <Play className="relative w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 fill-white ml-0.5" />
+          </motion.button>
+        </div>
       </div>
     </section>
   );

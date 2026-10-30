@@ -116,22 +116,30 @@ export function Tape({ color = '#FFD600', className = '' }) {
   );
 }
 
-// Round push-pin seen from slightly above: glossy head, rim, short needle and a soft shadow
+// Push-pin pressed all the way into the board, seen from above: only the domed head shows,
+// sitting on a slightly darker collar, with a soft contact shadow on the paper. No needle visible.
 export function PushPin({ color = '#FF1493', className = '' }) {
   return (
-    <svg viewBox="0 0 40 48" className={className} aria-hidden="true">
-      <ellipse cx="24" cy="40" rx="9" ry="3.2" fill="#000" opacity="0.18" />
-      <path d="M20 26 L23 42" stroke="#8a8f98" strokeWidth="2.2" strokeLinecap="round" />
-      <circle cx="20" cy="17" r="13" fill={color} />
-      <circle cx="20" cy="17" r="13" fill="url(#pinShade)" />
-      <ellipse cx="15.5" cy="12" rx="4.5" ry="3" fill="#fff" opacity="0.65" transform="rotate(-30 15.5 12)" />
-      <circle cx="20" cy="17" r="13" fill="none" stroke="#000" strokeOpacity="0.25" strokeWidth="1.2" />
+    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
       <defs>
-        <radialGradient id="pinShade" cx="35%" cy="30%" r="75%">
-          <stop offset="55%" stopColor="#000" stopOpacity="0" />
-          <stop offset="100%" stopColor="#000" stopOpacity="0.35" />
+        <filter id="pinBlur" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="1.8" />
+        </filter>
+        <radialGradient id="pinDome" cx="38%" cy="32%" r="70%">
+          <stop offset="0%" stopColor="#fff" stopOpacity="0.55" />
+          <stop offset="35%" stopColor="#fff" stopOpacity="0" />
+          <stop offset="100%" stopColor="#000" stopOpacity="0.32" />
         </radialGradient>
       </defs>
+      {/* contact shadow, offset away from the light (top-left) */}
+      <ellipse cx="22.5" cy="23" rx="13" ry="12" fill="#000" opacity="0.28" filter="url(#pinBlur)" />
+      {/* collar where the head meets the paper */}
+      <circle cx="20" cy="20" r="13" fill={color} />
+      <circle cx="20" cy="20" r="13" fill="#000" opacity="0.22" />
+      {/* domed head */}
+      <circle cx="19.4" cy="19.2" r="11" fill={color} />
+      <circle cx="19.4" cy="19.2" r="11" fill="url(#pinDome)" />
+      <ellipse cx="15.6" cy="14.8" rx="3.6" ry="2.3" fill="#fff" opacity="0.8" transform="rotate(-35 15.6 14.8)" />
     </svg>
   );
 }

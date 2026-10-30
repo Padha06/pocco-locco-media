@@ -149,3 +149,21 @@
 .animate-marquee:hover {
   animation-play-state: paused;
 }
+
+/* Partner logos: a little quicker than the default marquee, and still for "reduce motion" users */
+.partners-marquee {
+  animation-duration: 28s;
+}
+@media (max-width: 640px) {
+  .partners-marquee {
+    animation-duration: 18s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .partners-marquee {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+  }
+}

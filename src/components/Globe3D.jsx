@@ -55,7 +55,8 @@ export default function Globe3D({ className = '', onReady }) {
 
     const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
     // Close enough that the globe fills its box (the pins just fit at the top)
-    camera.position.set(0, 0, 4.2);
+    // Close enough that the globe fills the paint's hole at rest (no paper gap round the edge)
+    camera.position.set(0, 0, 3.95);
 
     // tilt (cursor) -> pitch (fixed forward lean) -> spin (auto + drag, around the globe's own pole) -> model
     // The model's two map pins sit at ~65-72 deg N on either side; leaning the globe 40 deg toward
@@ -163,7 +164,7 @@ export default function Globe3D({ className = '', onReady }) {
     // Hover: small "pop"
     let hoverScale = 1;
     let hoverTarget = 1;
-    const onEnter = () => (hoverTarget = 1.06);
+    const onEnter = () => (hoverTarget = 1.03);
     const onLeave = () => (hoverTarget = 1);
     canvas.addEventListener('pointerenter', onEnter);
     canvas.addEventListener('pointerleave', onLeave);

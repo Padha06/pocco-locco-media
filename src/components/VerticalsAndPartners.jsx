@@ -180,12 +180,13 @@ export default function VerticalsAndPartners() {
               style={{ transformOrigin: '50% 0%' }}
               className="group relative bg-[#fffdf8] rounded-md border border-gray-200/80 shadow-[2px_8px_18px_rgba(0,0,0,0.12)] hover:shadow-2xl transition-shadow duration-300 flex flex-col p-2 sm:p-2.5"
             >
+              {/* pin drops in, then presses flat into the paper just below the top edge */}
               <motion.div
-                initial={{ y: -24, opacity: 0, scale: 1.4 }}
-                whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                initial={{ y: -24, opacity: 0, scale: 1.5 }}
+                whileInView={{ y: 0, opacity: 1, scale: [1.5, 0.92, 1] }}
                 viewport={{ once: true }}
-                transition={{ type: 'spring', stiffness: 420, damping: 14, delay: 0.35 + idx * 0.1 }}
-                className="absolute -top-4 sm:-top-5 left-1/2 -translate-x-1/2 z-20 w-7 sm:w-9"
+                transition={{ duration: 0.5, ease: 'easeOut', delay: 0.35 + idx * 0.1 }}
+                className="absolute -top-1 sm:-top-1.5 left-1/2 -translate-x-1/2 z-20 w-6 sm:w-8"
               >
                 <PushPin color={PIN_COLORS[idx]} className="w-full h-auto" />
               </motion.div>
@@ -309,16 +310,29 @@ export default function VerticalsAndPartners() {
             <img src="/assets/crown-white.svg" alt="" className="w-8 h-8 sm:w-12 sm:h-12 object-contain rotate-6" />
           </div>
 
-          <div className="grid grid-cols-4 justify-items-center gap-y-3 lg:flex lg:flex-wrap lg:items-center lg:justify-between lg:gap-x-10 lg:gap-y-6 text-black">
-            {partners.map((p) => (
-              <motion.div
-                key={p}
-                whileHover={{ scale: 1.08 }}
-                className="select-none cursor-default max-sm:scale-[0.62]"
-              >
-                <PartnerLogo name={p} />
-              </motion.div>
-            ))}
+          {/* Logos slide right-to-left forever. The list is rendered twice and the track moves by
+              exactly half its width, so the second copy lands where the first started (no jump).
+              Spacing is padding on each item rather than flex gap, so both halves are equal. */}
+          <div
+            className="relative overflow-hidden py-2 sm:py-3 text-black"
+            style={{
+              WebkitMaskImage: 'linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)',
+              maskImage: 'linear-gradient(to right, transparent, #000 6%, #000 94%, transparent)',
+            }}
+          >
+            <div className="animate-marquee partners-marquee items-center">
+              {[...partners, ...partners].map((p, i) => (
+                <div
+                  key={`${p}-${i}`}
+                  aria-hidden={i >= partners.length}
+                  className="shrink-0 px-6 sm:px-10 lg:px-12 flex items-center select-none cursor-default transition-transform duration-300 hover:scale-110"
+                >
+                  <div className="max-sm:scale-[0.75]">
+                    <PartnerLogo name={p} />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 

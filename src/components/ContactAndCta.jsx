@@ -25,9 +25,8 @@ export default function ContactAndCta() {
     offset: ['start end', 'end start'],
   });
 
-  // Rocket drifts up and across on scroll
+  // Rocket glides sideways on scroll; it stays seated on the footer edge
   const rocketX = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-  const rocketY = useTransform(scrollYProgress, [0, 1], [20, -20]);
 
   const update = (key) => (e) => setFormData({ ...formData, [key]: e.target.value });
 
@@ -51,10 +50,6 @@ export default function ContactAndCta() {
         {/* Scattered doodle stars across the sky (desktop only, they crowd the stacked mobile layout) */}
         <div className="hidden lg:block">
         <DoodleStar className="absolute top-[30%] left-[2%] w-5 h-5 text-black fill-[#FFD600] stroke-[5]" />
-        <DoodleStar className="absolute top-[56%] left-[1%] w-4 h-4 text-black fill-[#FF1493] stroke-[5]" />
-        <DoodleStar className="absolute bottom-[8%] left-[3%] w-5 h-5 text-black fill-[#FFD600] stroke-[5]" />
-        <DoodleStar className="absolute bottom-[22%] left-[44%] w-7 h-7 text-black fill-[#FFD600] stroke-[5]" />
-        <DoodleStar className="absolute bottom-[6%] left-[40%] w-4 h-4 text-black fill-[#FFD600] stroke-[5]" />
         <DoodleStar className="absolute top-[4%] right-[3%] w-6 h-6 text-black fill-[#FFD600] stroke-[5]" />
         </div>
 
@@ -184,11 +179,37 @@ export default function ContactAndCta() {
         </section>
 
         {/* READY TO GROW WITH POCCO LOCCO? */}
-        <section ref={ctaRef} className="relative pt-2 pb-6 sm:pb-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-12 gap-2 lg:gap-6 items-center relative z-10">
+        <section ref={ctaRef} className="relative pt-2">
+          {/* Doodles scattered across the band, positioned like the client's footer artwork */}
+          <div className="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
+            <DoodleStar className="absolute top-[10%] left-[1.5%] w-4 sm:w-6 h-auto text-black fill-[#FF1493] stroke-[5]" />
+            <DoodleStar className="absolute top-[62%] left-[1%] w-4 sm:w-7 h-auto text-black fill-none stroke-[5]" />
+            <DoodleStar className="hidden sm:block absolute top-[18%] left-[45%] w-6 sm:w-11 h-auto text-black fill-[#FFD600] stroke-[5] -rotate-12" />
+            <DoodleStar className="absolute top-[76%] left-[41%] w-4 sm:w-6 h-auto text-black fill-[#FF8A1E] stroke-[5] rotate-12" />
+            <DoodleStar className="hidden sm:block absolute top-[4%] left-[63%] w-5 sm:w-8 h-auto text-black fill-[#FFD600] stroke-[5]" />
+            <DoodleStar className="hidden sm:block absolute top-[18%] left-[69%] w-5 sm:w-9 h-auto text-black fill-[#FFD600] stroke-[5] rotate-6" />
+            <DoodleStar className="absolute top-[14%] right-[1.5%] w-4 sm:w-6 h-auto text-black fill-[#22D3EE] stroke-[5]" />
+            <DoodleStar className="absolute top-[52%] right-[1%] w-4 sm:w-7 h-auto text-black fill-none stroke-[5] -rotate-12" />
+            {/* green sparkle */}
+            <svg viewBox="0 0 24 24" className="absolute top-[26%] left-[51%] w-3 sm:w-5 h-auto">
+              <path d="M12 2v6M12 16v6M2 12h6M16 12h6" stroke="#22C55E" strokeWidth="3" strokeLinecap="round" />
+            </svg>
+            {/* little dart / paper plane doodle near the rocket */}
+            <svg viewBox="0 0 60 30" fill="none" className="hidden sm:block absolute top-[34%] left-[66%] w-14 h-auto">
+              <path d="M4 26 L52 6 L34 22 Z" fill="#FF1493" stroke="#111" strokeWidth="2.4" strokeLinejoin="round" />
+              <path d="M34 22 L40 28" stroke="#111" strokeWidth="2.4" strokeLinecap="round" />
+            </svg>
+            {/* squiggle arrow from the button toward the rocket */}
+            <svg viewBox="0 0 140 50" fill="none" className="hidden sm:block absolute top-[70%] left-[29%] w-28 lg:w-36 h-auto text-black">
+              <path d="M4 30 C 22 14, 30 44, 50 30 S 80 10, 96 28 S 118 36, 130 24" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+              <path d="M118 18 L132 23 L124 36" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-12 gap-2 lg:gap-6 items-end relative z-10">
 
             {/* Left Text */}
-            <div className="col-span-7 lg:col-span-5 text-left">
+            <div className="col-span-7 lg:col-span-5 text-left self-center pb-4 sm:pb-8">
               <h2 className="font-display text-2xl sm:text-5xl lg:text-[56px] text-black uppercase leading-[1.02] mb-2 sm:mb-3">
                 READY TO GROW <br />
                 WITH <span className="text-[#FF1493]">POCCO LOCCO?</span>
@@ -212,29 +233,31 @@ export default function ContactAndCta() {
               </motion.a>
             </div>
 
-            {/* Center: Rocket Brain Mascot */}
-            <div className="col-span-5 lg:col-span-4 flex justify-center">
+            {/* Center: Rocket Brain Mascot, seated on the footer's top edge like the client artwork */}
+            <div className="col-span-5 lg:col-span-4 flex justify-center self-end -mb-px">
               <motion.img
-                src="/assets/cta-rocket-hd.webp"
+                src="/assets/cta-rocket-v3.webp"
                 alt="Pocco Locco Rocket Brain Mascot"
-                style={{ x: rocketX, y: rocketY }}
-                whileHover={{ scale: 1.06 }}
-                className="w-full max-w-[150px] sm:max-w-[400px] h-auto object-contain"
+                style={{ x: rocketX }}
+                animate={{ rotate: [-1.5, 1.5, -1.5] }}
+                transition={{ repeat: Infinity, duration: 2.6, ease: 'easeInOut' }}
+                whileHover={{ scale: 1.05 }}
+                className="block w-full max-w-[190px] sm:max-w-[440px] lg:w-[132%] lg:max-w-none h-auto object-contain origin-bottom"
               />
             </div>
 
             {/* Right: hand-drawn "THE SKY IS JUST THE START" */}
-            <div className="flex absolute right-2 -top-8 scale-[0.36] origin-top-right lg:static lg:scale-100 lg:col-span-3 justify-center select-none pointer-events-none">
+            <div className="flex absolute right-2 top-1 scale-[0.36] origin-top-right lg:static lg:scale-100 lg:col-span-3 lg:self-center lg:pb-8 justify-center select-none pointer-events-none">
               <DoodleStar className="absolute top-0 right-6 w-5 h-5 text-black fill-[#FF1493] stroke-[5]" />
               <DoodleStar className="absolute bottom-0 right-2 w-7 h-7 text-black fill-[#FFD600] stroke-[5]" />
               <DoodleStar className="absolute top-1/2 left-0 w-4 h-4 text-black fill-[#FF1493] stroke-[5]" />
               <div className="font-marker text-black text-center -rotate-6 leading-[0.95]">
-                <span className="block text-[44px]">THE</span>
-                <span className="block text-[52px]">SKY</span>
-                <span className="block text-[30px]">IS JUST</span>
-                <span className="block text-[34px]">THE START</span>
-                <svg viewBox="0 0 160 14" className="w-40 h-3.5 mx-auto" fill="none">
-                  <path d="M4 10 Q 80 0, 156 6" stroke="#FFD600" strokeWidth="5" strokeLinecap="round" />
+                <span className="block text-[52px]">THE</span>
+                <span className="block text-[60px]">SKY</span>
+                <span className="block text-[40px]">IS JUST</span>
+                <span className="block text-[44px]">THE START</span>
+                <svg viewBox="0 0 200 16" className="w-52 h-4 mx-auto -mt-1" fill="none">
+                  <path d="M4 12 Q 100 0, 196 8" stroke="#FFD600" strokeWidth="6" strokeLinecap="round" />
                 </svg>
               </div>
             </div>
