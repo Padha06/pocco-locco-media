@@ -28,7 +28,11 @@ const icons = {
   ),
 };
 
-export const SOCIAL_NETWORKS = ['linkedin', 'instagram', 'twitter', 'facebook', 'youtube'];
+// The client's live profiles; only these two are shown
+export const SOCIAL_NETWORKS = [
+  { name: 'linkedin', label: 'Pocco Locco on LinkedIn', href: 'https://www.linkedin.com/company/brands-go-crazy/' },
+  { name: 'instagram', label: 'Pocco Locco on Instagram', href: 'https://www.instagram.com/pocome_019/' },
+];
 
 export function SocialIcon({ name, className = 'w-3.5 h-3.5' }) {
   return (
@@ -46,11 +50,14 @@ export function SocialRow({ variant = 'dark', size = 'w-8 h-8' }) {
       : 'bg-white text-black hover:bg-[#FF1493] hover:text-white';
   return (
     <div className="flex items-center gap-1 sm:gap-2">
-      {SOCIAL_NETWORKS.map((name) => (
+      {SOCIAL_NETWORKS.map(({ name, label, href }) => (
         <a
           key={name}
-          href="#contact"
-          aria-label={name}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label}
+          title={label}
           className={`${size} rounded-full flex items-center justify-center transition-colors ${styles}`}
         >
           <SocialIcon name={name} />
